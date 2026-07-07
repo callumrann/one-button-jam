@@ -20,7 +20,6 @@ func _physics_process(delta: float) -> void:
 
 		elif is_on_wall(): # consider no else
 			var wall_normal_x: float = get_wall_normal().x
-			print(get_wall_normal())
 			if wall_normal_x < 0 and direction == RIGHT: # check if RIGHT?
 				direction = LEFT
 			if wall_normal_x > 0 and direction == LEFT:
@@ -30,3 +29,6 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * MOVEMENT_SPEED
 
 	move_and_slide()
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("ouch")
