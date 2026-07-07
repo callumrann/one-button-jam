@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var spawn: Marker2D = $"../Spawn"
 
 const MOVEMENT_SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -9,6 +10,8 @@ const RIGHT: int = 1
 
 var direction: int = RIGHT
 
+func _ready() -> void:
+	position = spawn.position
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -20,7 +23,7 @@ func _physics_process(delta: float) -> void:
 
 		elif is_on_wall(): # consider no else
 			var wall_normal_x: float = get_wall_normal().x
-			if wall_normal_x < 0 and direction == RIGHT: # check if RIGHT?
+			if wall_normal_x < 0 and direction == RIGHT: # == RIGHT avoids double detection <- not necessary?
 				direction = LEFT
 			if wall_normal_x > 0 and direction == LEFT:
 				direction = RIGHT
@@ -31,4 +34,5 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("ouch")
+	print("dead")
+	position = spawn.position

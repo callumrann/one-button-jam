@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d0j1w2k3etpey"]
+
+[ext_resource type="PackedScene" uid="uid://ni1kwt3thset" path="res://scenes/player.tscn" id="1_rus8k"]
+[ext_resource type="PackedScene" uid="uid://bcgdjm6221iak" path="res://scenes/object.tscn" id="2_5xbjy"]
+[ext_resource type="PackedScene" uid="uid://dlg370yn7wwy6" path="res://scenes/enemy.tscn" id="3_4nkto"]
+
+[node name="level_1" type="Node2D" unique_id=1466004205]
+
+[node name="Spawn" type="Marker2D" parent="." unique_id=1486613229]
+position = Vector2(-200, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1800101526]
+
+[node name="Player" parent="." unique_id=1029127342 instance=ExtResource("1_rus8k")]
+
+[node name="Objects" type="Node2D" parent="." unique_id=1140651874]
+
+[node name="Object" parent="Objects" unique_id=1947797432 instance=ExtResource("2_5xbjy")]
+position = Vector2(0, 300)
+scale = Vector2(80, 1)
+
+[node name="Object2" parent="Objects" unique_id=1932608462 instance=ExtResource("2_5xbjy")]
+position = Vector2(300, 220)
+scale = Vector2(1, 10)
+
+[node name="Object3" parent="Objects" unique_id=2100006904 instance=ExtResource("2_5xbjy")]
+position = Vector2(-300, 220)
+scale = Vector2(1, 10)
+
+[node name="Enemy" parent="." unique_id=211370443 instance=ExtResource("3_4nkto")]
+position = Vector2(150, 300)
