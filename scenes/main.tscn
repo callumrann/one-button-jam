@@ -18,3 +18,7 @@ scale = Vector2(80, 1)
 [node name="Object2" parent="Objects" unique_id=1932608462 instance=ExtResource("2_0wfyh")]
 position = Vector2(300, 220)
 scale = Vector2(1, 10)
+
+[node name="Object3" parent="Objects" unique_id=2100006904 instance=ExtResource("2_0wfyh")]
+position = Vector2(-300, 220)
+scale = Vector2(1, 10)

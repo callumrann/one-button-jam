@@ -14,8 +14,18 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta # gravity changed in project settings
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+
+		elif is_on_wall(): # consider no else
+			var wall_normal_x: float = get_wall_normal().x
+			print(get_wall_normal())
+			if wall_normal_x < 0 and direction == RIGHT: # check if RIGHT?
+				direction = LEFT
+			if wall_normal_x > 0 and direction == LEFT:
+				direction = RIGHT
+			velocity.y = JUMP_VELOCITY
 
 	velocity.x = direction * MOVEMENT_SPEED
 
