@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ni1kwt3thset"]
+
+[ext_resource type="Texture2D" uid="uid://bpl5jrcq1xj8w" path="res://assets/sprites/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cdi6ad2bh3l7f" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3vyb7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1029127342]
+script = ExtResource("1_g2els")
+
+[node name="WallCollider" type="CollisionShape2D" parent="." unique_id=514428515]
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1726238600]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1445469335]
+sprite_frames = SubResource("SpriteFrames_tebl0")
