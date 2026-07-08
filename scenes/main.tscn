@@ -1,10 +1,42 @@
 [gd_scene format=3 uid="uid://d4ld2il4pabhj"]
 
 [ext_resource type="Script" uid="uid://cpee2ijl6pd88" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://c7ylmkopddvgk" path="res://scripts/hud.gd" id="2_0wfyh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5qli"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font_size = 30
 
 [node name="Main" type="Node2D" unique_id=2044140268]
 script = ExtResource("1_o5qli")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1954585000]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1954585000]
+script = ExtResource("2_0wfyh")
+
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=1997602093]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "0.0"
+label_settings = SubResource("LabelSettings_o5qli")
+horizontal_alignment = 1
+
+[node name="DeathsLabel" type="Label" parent="HUD" unique_id=1549296930]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 20.0
+offset_bottom = 62.0
+grow_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_0wfyh")
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=507613980]

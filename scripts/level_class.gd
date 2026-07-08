@@ -1,4 +1,4 @@
-class_name Level # need base level, or just this script?
+class_name Level
 extends Node2D
 
 @onready var spawn: Marker2D = $"Spawn"
