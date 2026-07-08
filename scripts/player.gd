@@ -8,6 +8,9 @@ const JUMP_VELOCITY = -400.0
 const LEFT: int = -1
 const RIGHT: int = 1
 
+const ENEMY_LAYER: int = 2
+const ENDZONE_LAYER: int = 3
+
 var direction: int = RIGHT
 
 func _ready() -> void:
@@ -34,5 +37,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("dead")
-	position = spawn.position
+	if area.collision_layer & (1 << (ENEMY_LAYER - 1)):
+		position = spawn.position
+	elif area.collision_layer & (1 << (ENDZONE_LAYER - 1)):
+		print("endzone")
