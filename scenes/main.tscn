@@ -1,42 +1,103 @@
 [gd_scene format=3 uid="uid://d4ld2il4pabhj"]
 
 [ext_resource type="Script" uid="uid://cpee2ijl6pd88" path="res://scripts/main.gd" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://c7ylmkopddvgk" path="res://scripts/hud.gd" id="2_0wfyh"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_o5qli"]
-font_size = 30
-
-[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
-font_size = 30
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/menus.tres" id="3_sugp2"]
 
 [node name="Main" type="Node2D" unique_id=2044140268]
+process_mode = 3
 script = ExtResource("1_o5qli")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1954585000]
-script = ExtResource("2_0wfyh")
+process_mode = 1
 
-[node name="TimeLabel" type="Label" parent="HUD" unique_id=1997602093]
+[node name="Control" type="Control" parent="HUD" unique_id=749558311]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLabel" type="Label" parent="HUD/Control" unique_id=1997602093]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 43.0
+offset_left = -21.5
+offset_right = 21.5
+offset_bottom = 42.0
 grow_horizontal = 2
+theme = ExtResource("3_sugp2")
 text = "0.0"
-label_settings = SubResource("LabelSettings_o5qli")
 horizontal_alignment = 1
 
-[node name="DeathsLabel" type="Label" parent="HUD" unique_id=1549296930]
+[node name="DeathsLabel" type="Label" parent="HUD/Control" unique_id=1549296930]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -40.0
-offset_top = 20.0
-offset_bottom = 62.0
+offset_bottom = 42.0
 grow_horizontal = 0
+theme = ExtResource("3_sugp2")
 text = "0"
-label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=794871286]
+process_mode = 2
+layer = 2
+
+[node name="Control" type="Control" parent="PauseMenu" unique_id=1487756526]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu/Control" unique_id=1439030783]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -133.0
+offset_right = 219.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Control/PanelContainer" unique_id=1206624371]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_sugp2")
+
+[node name="PausedLabel" type="Label" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1871084461]
+layout_mode = 2
+theme = ExtResource("3_sugp2")
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1684710854]
+layout_mode = 2
+theme = ExtResource("3_sugp2")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=735624172]
+layout_mode = 2
+theme = ExtResource("3_sugp2")
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=449979864]
+layout_mode = 2
+theme = ExtResource("3_sugp2")
+text = "Main Menu"
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=507613980]
+process_mode = 1
+
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_pressed"]

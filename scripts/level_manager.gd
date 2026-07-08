@@ -22,8 +22,8 @@ func load_level(level: int) -> void:
 	
 	current_level = level
 
-func show_message(text: String, duration: float = 3.0) -> void: # use for later dialogue if time
-	pass
+func restart_level() -> void:
+	load_level(current_level)
 
 func player_died() -> void:
 	level_deaths += 1
@@ -39,3 +39,6 @@ func level_finished() -> void:
 		call_deferred("load_level", current_level) # dont know why needed deferred with queue free, but fixed errors
 	else:
 		print("finish screen")
+
+func show_message(text: String, duration: float = 3.0) -> void: # use for later dialogue if time
+	pass
