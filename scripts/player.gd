@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-@onready var spawn: Marker2D = $"../Spawn"
-
+signal kill_player
 signal endzone_reached
 
 const MOVEMENT_SPEED = 300.0
@@ -14,9 +13,6 @@ const ENEMY_LAYER: int = 2
 const ENDZONE_LAYER: int = 3
 
 var direction: int = RIGHT
-
-func _ready() -> void:
-	position = spawn.position
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -40,7 +36,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << (ENEMY_LAYER - 1)):
-		position = spawn.position
+		kill_player.emit()
 	elif area.collision_layer & (1 << (ENDZONE_LAYER - 1)):
-		print("endzone")
 		endzone_reached.emit()
