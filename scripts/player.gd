@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var spawn: Marker2D = $"../Spawn"
 
+signal endzone_reached
+
 const MOVEMENT_SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
@@ -41,3 +43,4 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		position = spawn.position
 	elif area.collision_layer & (1 << (ENDZONE_LAYER - 1)):
 		print("endzone")
+		endzone_reached.emit()

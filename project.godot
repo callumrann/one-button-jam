@@ -19,6 +19,10 @@ run/main_scene="uid://d0j1w2k3etpey"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelManager="*uid://c3eit6xn7ywmq"
+
 [display]
 
 window/size/viewport_width=1280
