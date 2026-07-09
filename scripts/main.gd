@@ -55,4 +55,4 @@ func _on_main_menu_pressed() -> void:
 '''
 func _ready() -> void:
 	LevelManager.level_container = $"LevelContainer"
-	LevelManager.load_level(1)
+	LevelManager.load_level(LevelManager.current_level)

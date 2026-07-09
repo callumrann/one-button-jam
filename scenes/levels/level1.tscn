@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d0j1w2k3etpey"]
 
 [ext_resource type="Script" uid="uid://1lftm0gtua61" path="res://scripts/levels/level_1.gd" id="1_dd0lh"]
-[ext_resource type="PackedScene" uid="uid://bcgdjm6221iak" path="res://scenes/object.tscn" id="2_bfxgj"]
-[ext_resource type="PackedScene" uid="uid://dlg370yn7wwy6" path="res://scenes/enemy.tscn" id="3_dywbp"]
+[ext_resource type="PackedScene" uid="uid://bcgdjm6221iak" path="res://scenes/objects/object.tscn" id="2_bfxgj"]
+[ext_resource type="PackedScene" uid="uid://dlg370yn7wwy6" path="res://scenes/objects/enemy.tscn" id="3_dywbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tebl0"]
 size = Vector2(116, 98)

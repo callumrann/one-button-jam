@@ -40,7 +40,7 @@ func load_next_level() -> void:
 		load_level(current_level)
 		#call_deferred("load_level", current_level) # dont know why needed deferred with queue free, but fixed errors
 	else:
-		print("finish screen")
+		get_tree().change_scene_to_file("res://scenes/menus/game_finished.tscn")
 
 func player_died() -> void:
 	level_deaths += 1
@@ -55,3 +55,5 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 
 # make death less hard on eyes (turn screen black + spawn animation or smth)
 # add win animation, somehow make player sit still
+# consider making space go to next level
+# announce if new best time for player

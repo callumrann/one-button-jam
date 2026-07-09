@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var spawn: Marker2D = $"Spawn"
 
-const PLAYER_SCENE: Resource = preload("res://scenes/player.tscn")
+const PLAYER_SCENE: Resource = preload("res://scenes/objects/player.tscn")
 var player: CharacterBody2D
 
 func _ready() -> void:

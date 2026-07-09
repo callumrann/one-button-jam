@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="one-button-jam"
-run/main_scene="uid://d4ld2il4pabhj"
+run/main_scene="uid://s2p1ksxct1qy"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
