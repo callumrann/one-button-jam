@@ -31,7 +31,7 @@ func player_died() -> void:
 func level_finished() -> void:
 	print ("endzone reached")
 	current_level += 1
-	# save time and deaths
+	# save time and deaths... maybe
 	level_time = 0.0
 	level_deaths = 0
 	
