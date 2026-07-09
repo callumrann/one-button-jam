@@ -1,41 +1,50 @@
 extends Node2D
 
-# could split into three files if becomes too large
-
-func _ready() -> void:
-	_pause_menu_ready()
-	_level_container_ready()
+# could split into individual files if becomes too large
 
 '''
-====== HUD ===== 
+====== HUD and LevelCompleteMenu ===== 
 '''
+@onready var level_complete_menu: CanvasLayer = $"LevelCompleteMenu"
+
 @onready var timer_label: Label = $"HUD/Control/TimeLabel"
 @onready var death_label: Label = $"HUD/Control/DeathsLabel"
 
 func _process(_delta: float) -> void:
-	timer_label.text = "Time: %.2f" % LevelManager.level_time
-	death_label.text = "Deaths: %d" % LevelManager.level_deaths
+	level_complete_menu.visible = LevelManager.show_complete_screen
+	
+	if !LevelManager.show_complete_screen: # stops timers, else remove? - text holds end times
+		timer_label.text = "Time: %.2f" % LevelManager.level_time
+		death_label.text = "Deaths: %d" % LevelManager.level_deaths
+
+func _on_continue_pressed() -> void:
+	LevelManager.show_complete_screen = false
+	LevelManager.load_next_level()
+
+func _on_restart_pressed() -> void:
+	LevelManager.show_complete_screen = false
+	LevelManager.restart_level()
+
 '''
 ====== PauseMenu ===== 
 '''
 @onready var pause_menu: CanvasLayer = $"PauseMenu"
-
-func _pause_menu_ready() -> void:
-	pause_menu.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		_toggle_pause()
 
 func _toggle_pause():
+	if LevelManager.show_complete_screen:
+		return
 	pause_menu.visible = !pause_menu.visible
 	get_tree().paused = pause_menu.visible # will need to test extent of .paused
 
 func _on_resume_pressed() -> void:
 	_toggle_pause()
 
-func _on_restart_pressed() -> void:
-	LevelManager.restart_level() # perhaps change later (whole colour splatter idea)
+func _on_explode_pressed() -> void:
+	LevelManager.player_died()
 	_toggle_pause()
 
 func _on_main_menu_pressed() -> void:
@@ -44,6 +53,6 @@ func _on_main_menu_pressed() -> void:
 '''
 ====== LevelContainer ===== 
 '''
-func _level_container_ready() -> void:
+func _ready() -> void:
 	LevelManager.level_container = $"LevelContainer"
 	LevelManager.load_level(1)

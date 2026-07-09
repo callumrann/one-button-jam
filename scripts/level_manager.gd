@@ -7,6 +7,8 @@ var level_container: Node2D = null
 var level_time: float = 0.0
 var level_deaths: int = 0
 
+var show_complete_screen: bool = false # move this logic elsewhere?
+
 func _process(delta: float) -> void:
 	level_time += delta
 
@@ -23,22 +25,33 @@ func load_level(level: int) -> void:
 	current_level = level
 
 func restart_level() -> void:
+	level_time = 0
+	level_deaths = 0
 	load_level(current_level)
+	# reset splatters
 
-func player_died() -> void:
-	level_deaths += 1
-
-func level_finished() -> void:
-	print ("endzone reached")
+func load_next_level() -> void:
 	current_level += 1
-	# save time and deaths... maybe
+	
 	level_time = 0.0
 	level_deaths = 0
 	
 	if current_level <= levels.size():
-		call_deferred("load_level", current_level) # dont know why needed deferred with queue free, but fixed errors
+		load_level(current_level)
+		#call_deferred("load_level", current_level) # dont know why needed deferred with queue free, but fixed errors
 	else:
 		print("finish screen")
 
+func player_died() -> void:
+	level_deaths += 1
+	load_level(current_level)
+
+func level_finished() -> void:
+	print ("endzone reached")
+	show_complete_screen = true
+
 func show_message(text: String, duration: float = 3.0) -> void: # use for later dialogue if time
 	pass
+
+# make death less hard on eyes (turn screen black + spawn animation or smth)
+# add win animation, somehow make player sit still

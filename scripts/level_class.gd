@@ -10,15 +10,11 @@ func _ready() -> void:
 	player = PLAYER_SCENE.instantiate()
 	player.global_position = spawn.global_position
 	add_child(player)
-	player.endzone_reached.connect(_on_level_complete)
 	player.kill_player.connect(_on_death)
-
-func _physics_process(delta: float) -> void:
-	pass
+	player.endzone_reached.connect(_on_level_complete)
+	player.get_node("Camera2D").make_current() # stop flicker on restart
 
 func _on_death() -> void:
-	player.global_position = spawn.global_position
-	player.direction = player.RIGHT # some levels may have different directions
 	LevelManager.player_died()
 
 func _on_level_complete() -> void:
