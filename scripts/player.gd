@@ -3,8 +3,9 @@ extends CharacterBody2D
 signal kill_player
 signal endzone_reached
 
-const MOVEMENT_SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const MOVEMENT_SPEED: float = 300.0
+const JUMP_VELOCITY: float = -400.0
+const SPEEDFALL_VELOCITY: float = 250.0
 
 const LEFT: int = -1
 const RIGHT: int = 1
@@ -29,6 +30,9 @@ func _physics_process(delta: float) -> void:
 			if wall_normal_x > 0 and direction == LEFT:
 				direction = RIGHT
 			velocity.y = JUMP_VELOCITY
+		
+		else:
+			velocity.y = SPEEDFALL_VELOCITY
 
 	velocity.x = direction * MOVEMENT_SPEED
 
