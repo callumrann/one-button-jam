@@ -4,8 +4,9 @@ signal kill_player
 signal endzone_reached
 
 const MOVEMENT_SPEED: float = 100.0
-const JUMP_VELOCITY: float = -150.0
-const SPEEDFALL_VELOCITY: float = 100.0
+const JUMP_VELOCITY: float = -225.0
+const JUMP_CUT_MULTIPLIER: float = 0.5
+const SPEEDFALL_VELOCITY: float = 200.0
 
 const LEFT: int = -1
 const RIGHT: int = 1
@@ -33,6 +34,9 @@ func _physics_process(delta: float) -> void:
 		
 		else:
 			velocity.y = SPEEDFALL_VELOCITY
+	
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y *= JUMP_CUT_MULTIPLIER
 
 	velocity.x = direction * MOVEMENT_SPEED
 

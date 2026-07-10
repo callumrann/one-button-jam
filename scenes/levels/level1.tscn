@@ -39,7 +39,7 @@ debug_color = Color(0.6939615, 0.49589866, 0.02695553, 0.41960785)
 [node name="Enemies" type="Node2D" parent="." unique_id=593646384]
 
 [node name="Saw" parent="Enemies" unique_id=211370443 instance=ExtResource("3_dywbp")]
-position = Vector2(-34, 76)
+position = Vector2(-64, 23)
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=1182506591]
 tile_set = SubResource("TileSet_bfxgj")
