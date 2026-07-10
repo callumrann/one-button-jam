@@ -18,11 +18,9 @@ func _process(_delta: float) -> void:
 		death_label.text = "Deaths: %d" % LevelManager.level_deaths
 
 func _on_continue_pressed() -> void:
-	LevelManager.show_complete_screen = false
 	LevelManager.load_next_level()
 
 func _on_restart_pressed() -> void:
-	LevelManager.show_complete_screen = false
 	LevelManager.restart_level()
 
 '''
@@ -48,7 +46,8 @@ func _on_explode_pressed() -> void:
 	_toggle_pause()
 
 func _on_main_menu_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 
 '''
 ====== LevelContainer ===== 
