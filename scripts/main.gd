@@ -1,4 +1,4 @@
-extends Node2D
+extends SubViewport
 
 # could split into individual files if becomes too large
 

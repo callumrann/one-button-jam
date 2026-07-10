@@ -64,3 +64,5 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 # ready, set, run at start?
 # need theme, 
 # add practice mode? <- can't be too hard for jam
+# add triple layer tilemap
+# or maybe just double

@@ -3,9 +3,9 @@ extends CharacterBody2D
 signal kill_player
 signal endzone_reached
 
-const MOVEMENT_SPEED: float = 300.0
-const JUMP_VELOCITY: float = -400.0
-const SPEEDFALL_VELOCITY: float = 250.0
+const MOVEMENT_SPEED: float = 100.0
+const JUMP_VELOCITY: float = -150.0
+const SPEEDFALL_VELOCITY: float = 100.0
 
 const LEFT: int = -1
 const RIGHT: int = 1

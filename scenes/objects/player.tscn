@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bpl5jrcq1xj8w" path="res://assets/sprites/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cdi6ad2bh3l7f" path="res://scripts/player.gd" id="1_g2els"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfxgj"]
+size = Vector2(8, 5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
 animations = [{
@@ -17,14 +17,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tebl0"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dywbp"]
+size = Vector2(8, 5)
 
 [node name="Player" type="CharacterBody2D" unique_id=1029127342]
 script = ExtResource("1_g2els")
 
 [node name="WallCollider" type="CollisionShape2D" parent="." unique_id=514428515]
-shape = SubResource("CircleShape2D_g2els")
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_bfxgj")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1726238600]
 
@@ -36,7 +37,8 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hurtbox" unique_id=1976142002]
-shape = SubResource("CircleShape2D_tebl0")
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_dywbp")
 debug_color = Color(0.17706224, 0.633797, 0.3271775, 0.41960785)
 
 [connection signal="area_entered" from="Pivot/Hurtbox" to="." method="_on_hurtbox_area_entered"]
