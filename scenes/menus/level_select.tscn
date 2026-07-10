@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dy57xuydich7i"]
 
-[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/menus.tres" id="1_xqyeo"]
+[ext_resource type="Theme" uid="uid://wltg2qldbhh5" path="res://assets/themes/menus.tres" id="1_xqyeo"]
 
 [node name="LevelSelect" type="Control" unique_id=489116059]
 layout_mode = 3

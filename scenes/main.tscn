@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpee2ijl6pd88" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Shader" uid="uid://c511tw4fbccdc" path="res://assets/shaders/screen_effect.gdshader" id="3_jyhfs"]
-[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/menus.tres" id="3_sugp2"]
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/in_game.tres" id="3_sugp2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o161g"]
 shader = ExtResource("3_jyhfs")
@@ -194,9 +194,9 @@ layer = 3
 material = SubResource("ShaderMaterial_o161g")
 mesh = SubResource("QuadMesh_tebl0")
 
-[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/Explode" to="." method="_on_explode_pressed"]
-[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Continue" to="SVC/SV" method="_on_continue_pressed"]
+[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Restart" to="SVC/SV" method="_on_restart_pressed"]
+[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="SVC/SV" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/Resume" to="SVC/SV" method="_on_resume_pressed"]
+[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/Explode" to="SVC/SV" method="_on_explode_pressed"]
+[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="SVC/SV" method="_on_main_menu_pressed"]

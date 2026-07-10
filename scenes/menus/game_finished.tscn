@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmbejbc6o85k3"]
 
-[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/menus.tres" id="1_yhuef"]
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/in_game.tres" id="1_yhuef"]
 
 [node name="GameFinished" type="Control" unique_id=2013334811]
 layout_mode = 3
