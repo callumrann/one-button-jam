@@ -39,8 +39,4 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_tebl0")
 debug_color = Color(0.17706224, 0.633797, 0.3271775, 0.41960785)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=114151467]
-process_callback = 0
-position_smoothing_enabled = true
-
 [connection signal="area_entered" from="Pivot/Hurtbox" to="." method="_on_hurtbox_area_entered"]

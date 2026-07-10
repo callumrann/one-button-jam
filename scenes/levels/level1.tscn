@@ -40,3 +40,6 @@ scale = Vector2(1, 10)
 
 [node name="Enemy" parent="Enemies" unique_id=211370443 instance=ExtResource("3_dywbp")]
 position = Vector2(150, 300)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=894049935]
+offset = Vector2(0, 100)
