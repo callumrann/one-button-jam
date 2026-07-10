@@ -49,7 +49,6 @@ func player_died() -> void:
 	load_level(current_level, true)
 
 func level_finished() -> void:
-	print ("endzone reached")
 	show_complete_screen = true
 
 func show_message(text: String, duration: float = 3.0) -> void: # use for later dialogue if time
