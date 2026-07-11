@@ -19,10 +19,15 @@ run/main_scene="uid://dknwfppvsaomf"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://2u7gxcofckk8"
+
 [autoload]
 
 LevelManager="*uid://c3eit6xn7ywmq"
 SceneManager="*uid://bjd72p0qu4i0w"
+AudioManager="*uid://5gifegalq23k"
 
 [display]
 
