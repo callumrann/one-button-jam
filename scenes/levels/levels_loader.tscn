@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://d4ld2il4pabhj"]
+
+[ext_resource type="Script" uid="uid://cpee2ijl6pd88" path="res://scripts/levels/levels_loader.gd" id="1_vmewy"]
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="2_07c4a"]
+
+[node name="LevelsLoader" type="Node2D" unique_id=2044140268]
+process_mode = 3
+script = ExtResource("1_vmewy")
+
+[node name="BackColour" type="CanvasLayer" parent="." unique_id=1067221053]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BackColour" unique_id=1150539262]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.87058824, 0.9843137, 0.84705883, 1)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1322325652]
+
+[node name="Control" type="Control" parent="HUD" unique_id=658340083]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLabel" type="Label" parent="HUD/Control" unique_id=633087249]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_right = 21.5
+offset_bottom = 42.0
+grow_horizontal = 2
+theme = ExtResource("2_07c4a")
+text = "0.0"
+horizontal_alignment = 1
+
+[node name="DeathsLabel" type="Label" parent="HUD/Control" unique_id=2106617366]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 42.0
+grow_horizontal = 0
+theme = ExtResource("2_07c4a")
+text = "0"
+
+[node name="LevelCompleteMenu" type="CanvasLayer" parent="." unique_id=505235858]
+layer = 2
+visible = false
+
+[node name="Control" type="Control" parent="LevelCompleteMenu" unique_id=708412844]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelCompleteMenu/Control" unique_id=1658820934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -50.0
+offset_right = 62.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelCompleteMenu/Control/PanelContainer" unique_id=1546831584]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_07c4a")
+
+[node name="LevelComplete" type="Label" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=710866545]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Level Complete"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1846283051]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Time: Deaths:"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1062343748]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Next Level"
+
+[node name="Restart" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=407100882]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1104285423]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Main Menu"
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=1796535580]
+layer = 2
+visible = false
+
+[node name="Control" type="Control" parent="PauseMenu" unique_id=1258366405]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu/Control" unique_id=253837880]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -50.0
+offset_right = 62.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Control/PanelContainer" unique_id=1242250368]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_07c4a")
+
+[node name="Paused" type="Label" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=532379831]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1757747124]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Resume"
+
+[node name="Explode" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1937587057]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Explode"
+
+[node name="MainMenu" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=235280783]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Main Menu"
+
+[node name="LevelContainer" type="Node2D" parent="." unique_id=496823153]
+process_mode = 1
+
+[connection signal="pressed" from="LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="LevelCompleteMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/Explode" to="." method="_on_explode_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

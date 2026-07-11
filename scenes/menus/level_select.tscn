@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dy57xuydich7i"]
 
-[ext_resource type="Theme" uid="uid://wltg2qldbhh5" path="res://assets/themes/menus.tres" id="1_xqyeo"]
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="1_xqyeo"]
 
 [node name="LevelSelect" type="Control" unique_id=489116059]
 layout_mode = 3
@@ -17,10 +17,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -84.5
-offset_top = -21.0
-offset_right = 84.5
-offset_bottom = 21.0
+offset_left = -48.0
+offset_top = -4.0
+offset_right = 48.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_xqyeo")

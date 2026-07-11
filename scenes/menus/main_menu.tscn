@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://s2p1ksxct1qy"]
 
 [ext_resource type="Script" uid="uid://ch1wdy2vd0bcn" path="res://scripts/main_menu.gd" id="1_ovrgc"]
-[ext_resource type="Theme" uid="uid://wltg2qldbhh5" path="res://assets/themes/menus.tres" id="3_2o76q"]
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="2_ovrgc"]
 
 [node name="MainMenu" type="Control" unique_id=572129566]
 layout_mode = 3
@@ -19,35 +19,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = -50.0
-offset_right = 111.0
-offset_bottom = 50.0
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_2o76q")
+theme = ExtResource("2_ovrgc")
+alignment = 1
 
 [node name="MainMenu" type="Label" parent="VBoxContainer" unique_id=1225917676]
 layout_mode = 2
-theme = ExtResource("3_2o76q")
+theme = ExtResource("2_ovrgc")
 text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="Continue" type="Button" parent="VBoxContainer" unique_id=1680547218]
 layout_mode = 2
-theme = ExtResource("3_2o76q")
+theme = ExtResource("2_ovrgc")
 text = "Continue"
 
 [node name="LevelSelect" type="Button" parent="VBoxContainer" unique_id=1945554232]
 layout_mode = 2
-theme = ExtResource("3_2o76q")
+theme = ExtResource("2_ovrgc")
 text = "Level Select"
 
 [node name="Quit" type="Button" parent="VBoxContainer" unique_id=519554022]
 layout_mode = 2
-theme = ExtResource("3_2o76q")
+theme = ExtResource("2_ovrgc")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]

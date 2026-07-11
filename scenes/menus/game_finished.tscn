@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmbejbc6o85k3"]
 
-[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/in_game.tres" id="1_yhuef"]
+[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="1_yhuef"]
 
 [node name="GameFinished" type="Control" unique_id=2013334811]
 layout_mode = 3
@@ -17,10 +17,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -84.5
-offset_top = -21.0
-offset_right = 84.5
-offset_bottom = 21.0
+offset_left = -52.0
+offset_top = -4.0
+offset_right = 52.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_yhuef")

@@ -1,202 +1,34 @@
-[gd_scene format=3 uid="uid://d4ld2il4pabhj"]
+[gd_scene format=3 uid="uid://dknwfppvsaomf"]
 
-[ext_resource type="Script" uid="uid://cpee2ijl6pd88" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://di04e5kvu7jn6" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Shader" uid="uid://c511tw4fbccdc" path="res://assets/shaders/screen_effect.gdshader" id="3_jyhfs"]
-[ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/in_game.tres" id="3_sugp2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o161g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 shader = ExtResource("3_jyhfs")
 
-[sub_resource type="QuadMesh" id="QuadMesh_tebl0"]
+[sub_resource type="QuadMesh" id="QuadMesh_sugp2"]
 size = Vector2(1280, 720)
 center_offset = Vector3(640, 360, 0)
 
-[node name="Main" type="Node2D" unique_id=2044140268]
+[node name="Main" type="Node2D" unique_id=1784418781]
 process_mode = 3
+script = ExtResource("1_o5qli")
 
-[node name="SVC" type="SubViewportContainer" parent="." unique_id=1229338042]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1123840762]
 offset_right = 960.0
 offset_bottom = 540.0
 stretch = true
 
-[node name="SV" type="SubViewport" parent="SVC" unique_id=704461380]
+[node name="Subviewport" type="SubViewport" parent="SubViewportContainer" unique_id=1289338403]
 handle_input_locally = false
 size = Vector2i(960, 540)
 size_2d_override = Vector2i(320, 180)
 size_2d_override_stretch = true
 render_target_update_mode = 4
-script = ExtResource("1_o5qli")
 
-[node name="BackColour" type="CanvasLayer" parent="SVC/SV" unique_id=2074063604]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="SVC/SV/BackColour" unique_id=1484756025]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.87058824, 0.9843137, 0.84705883, 1)
-
-[node name="HUD" type="CanvasLayer" parent="SVC/SV" unique_id=1954585000]
-
-[node name="Control" type="Control" parent="SVC/SV/HUD" unique_id=749558311]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TimeLabel" type="Label" parent="SVC/SV/HUD/Control" unique_id=1997602093]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -21.5
-offset_right = 21.5
-offset_bottom = 42.0
-grow_horizontal = 2
-theme = ExtResource("3_sugp2")
-text = "0.0"
-horizontal_alignment = 1
-
-[node name="DeathsLabel" type="Label" parent="SVC/SV/HUD/Control" unique_id=1549296930]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 42.0
-grow_horizontal = 0
-theme = ExtResource("3_sugp2")
-text = "0"
-
-[node name="LevelCompleteMenu" type="CanvasLayer" parent="SVC/SV" unique_id=1451774906]
-layer = 2
-visible = false
-
-[node name="Control" type="Control" parent="SVC/SV/LevelCompleteMenu" unique_id=1573476778]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="SVC/SV/LevelCompleteMenu/Control" unique_id=1165808448]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = -50.0
-offset_right = 62.5
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SVC/SV/LevelCompleteMenu/Control/PanelContainer" unique_id=522431970]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_sugp2")
-
-[node name="LevelComplete" type="Label" parent="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=530445554]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Level Complete"
-horizontal_alignment = 1
-
-[node name="Stats" type="Label" parent="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=241059442]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Time: Deaths:"
-horizontal_alignment = 1
-
-[node name="Continue" type="Button" parent="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1279628835]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Next Level"
-
-[node name="Restart" type="Button" parent="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1815022182]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Restart"
-
-[node name="MainMenu" type="Button" parent="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1795402618]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Main Menu"
-
-[node name="PauseMenu" type="CanvasLayer" parent="SVC/SV" unique_id=794871286]
-layer = 2
-visible = false
-
-[node name="Control" type="Control" parent="SVC/SV/PauseMenu" unique_id=1487756526]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="SVC/SV/PauseMenu/Control" unique_id=1439030783]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = -50.0
-offset_right = 62.5
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SVC/SV/PauseMenu/Control/PanelContainer" unique_id=1206624371]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_sugp2")
-
-[node name="Paused" type="Label" parent="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1871084461]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Paused"
-horizontal_alignment = 1
-
-[node name="Resume" type="Button" parent="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1684710854]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Resume"
-
-[node name="Explode" type="Button" parent="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=735624172]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Explode"
-
-[node name="MainMenu" type="Button" parent="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=449979864]
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-text = "Main Menu"
-
-[node name="LevelContainer" type="Node2D" parent="SVC/SV" unique_id=507613980]
-process_mode = 1
-
-[node name="ScreenEffect" type="CanvasLayer" parent="." unique_id=252966223]
+[node name="ScreenEffect" type="CanvasLayer" parent="." unique_id=1629912065]
 layer = 3
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="ScreenEffect" unique_id=1367357924]
-material = SubResource("ShaderMaterial_o161g")
-mesh = SubResource("QuadMesh_tebl0")
-
-[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Continue" to="SVC/SV" method="_on_continue_pressed"]
-[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Restart" to="SVC/SV" method="_on_restart_pressed"]
-[connection signal="pressed" from="SVC/SV/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="SVC/SV" method="_on_main_menu_pressed"]
-[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/Resume" to="SVC/SV" method="_on_resume_pressed"]
-[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/Explode" to="SVC/SV" method="_on_explode_pressed"]
-[connection signal="pressed" from="SVC/SV/PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="SVC/SV" method="_on_main_menu_pressed"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="ScreenEffect" unique_id=850691943]
+material = SubResource("ShaderMaterial_0wfyh")
+mesh = SubResource("QuadMesh_sugp2")

@@ -15,13 +15,14 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="one-button-jam"
-run/main_scene="uid://s2p1ksxct1qy"
+run/main_scene="uid://dknwfppvsaomf"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 LevelManager="*uid://c3eit6xn7ywmq"
+SceneManager="*uid://bjd72p0qu4i0w"
 
 [display]
 

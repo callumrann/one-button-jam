@@ -42,7 +42,7 @@ func load_next_level() -> void:
 	if current_level <= levels.size():
 		load_level(current_level)
 	else:
-		get_tree().change_scene_to_file("res://scenes/menus/game_finished.tscn")
+		SceneManager.show_scene("res://scenes/menus/game_finished.tscn")
 
 func player_died() -> void:
 	level_deaths += 1
@@ -58,10 +58,7 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 # add win animation, somehow make player sit still
 # consider making space go to next level
 # announce if new best time for player
-# make holding space raise player higher
 # water areas, fans, cannons, lava, spikes, saws, breaking blocks
 # ready, set, run at start?
-# need theme, 
 # add practice mode? <- can't be too hard for jam
-# add triple layer tilemap
-# or maybe just double
+# test web quit button disappear
