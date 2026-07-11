@@ -8,6 +8,9 @@ const JUMP_VELOCITY: float = -250.0
 const JUMP_CUT_MULTIPLIER: float = 0.5
 const SPEEDFALL_VELOCITY: float = 200.0
 
+const JUMP_BUFFER_TIME: float = 0.05
+var jump_buffer_timer: float = 0.0
+
 const LEFT: int = -1
 const RIGHT: int = 1
 
@@ -19,7 +22,10 @@ var direction: int = RIGHT
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta # gravity changed in project settings
-
+	
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta
+	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			AudioManager.play_sfx("jump", -5)
@@ -36,6 +42,11 @@ func _physics_process(delta: float) -> void:
 		
 		else:
 			velocity.y = SPEEDFALL_VELOCITY
+			jump_buffer_timer = JUMP_BUFFER_TIME
+	
+	if is_on_floor() and jump_buffer_timer > 0.0:
+		velocity.y = JUMP_VELOCITY
+		jump_buffer_timer = 0.0
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
