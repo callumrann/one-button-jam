@@ -96,17 +96,17 @@ theme = ExtResource("2_07c4a")
 text = "Time: Deaths:"
 horizontal_alignment = 1
 
-[node name="Continue" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1062343748]
+[node name="Continue" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1062343748 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Next Level"
 
-[node name="Restart" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=407100882]
+[node name="Restart" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=407100882 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Restart"
 
-[node name="MainMenu" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1104285423]
+[node name="MainMenu" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1104285423 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Main Menu"
@@ -149,17 +149,17 @@ theme = ExtResource("2_07c4a")
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1757747124]
+[node name="Resume" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1757747124 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Resume"
 
-[node name="Explode" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1937587057]
+[node name="Explode" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1937587057 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Explode"
 
-[node name="MainMenu" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=235280783]
+[node name="MainMenu" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=235280783 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Main Menu"

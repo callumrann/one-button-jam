@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
+			AudioManager.play_sfx("jump", -5)
 			velocity.y = JUMP_VELOCITY
 
 		elif is_on_wall(): # consider no else
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 			if wall_normal_x > 0 and direction == LEFT:
 				direction = RIGHT
 			velocity.y = JUMP_VELOCITY
+			AudioManager.play_sfx("wall_jump", -15)
 		
 		else:
 			velocity.y = SPEEDFALL_VELOCITY
@@ -48,6 +50,7 @@ func _physics_process(delta: float) -> void:
 @onready var animation: AnimatedSprite2D = $"Pivot/AnimatedSprite2D"
 
 var in_air: bool = false
+var first_ground_hit: bool = true # for removing spawn ground hit issues
 
 func _ready() -> void:
 	animation.animation_finished.connect(_on_animation_finished)
@@ -66,9 +69,14 @@ func _process(_delta: float) -> void:
 		animation.flip_h = false
 	
 	if is_on_floor():
-		if in_air:
+		if first_ground_hit:
+			first_ground_hit = false
+			in_air = false
+			animation.play("run")
+		elif in_air:
 			in_air = false
 			animation.play("hit_ground_1")
+			AudioManager.play_sfx("land", -8)
 		
 	else:
 		in_air = true

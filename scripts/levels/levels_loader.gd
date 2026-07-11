@@ -35,8 +35,14 @@ func _unhandled_input(event: InputEvent) -> void:
 func _toggle_pause():
 	if LevelManager.show_complete_screen:
 		return
+	
 	pause_menu.visible = !pause_menu.visible
 	get_tree().paused = pause_menu.visible # will need to test extent of .paused
+	
+	if pause_menu.visible:
+		AudioManager.play_sfx("pause_in", -15)
+	else:
+		AudioManager.play_sfx("pause_out", -15)
 
 func _on_resume_pressed() -> void:
 	_toggle_pause()

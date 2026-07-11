@@ -46,9 +46,11 @@ func load_next_level() -> void:
 
 func player_died() -> void:
 	level_deaths += 1
+	AudioManager.play_sfx("damage")
 	load_level(current_level, true)
 
 func level_finished() -> void:
+	AudioManager.play_sfx("level_win", -10)
 	show_complete_screen = true
 
 func show_message(text: String, duration: float = 3.0) -> void: # use for later dialogue if time
@@ -62,3 +64,4 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 # ready, set, run at start?
 # add practice mode? <- can't be too hard for jam
 # test web quit button disappear
+# add future buttons to group
