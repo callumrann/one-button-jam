@@ -1,43 +1,150 @@
 [gd_scene format=3 uid="uid://ni1kwt3thset"]
 
-[ext_resource type="Texture2D" uid="uid://bpl5jrcq1xj8w" path="res://assets/sprites/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cdi6ad2bh3l7f" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://ccksy0wqvet17" path="res://assets/sprites/player-Sheet.png" id="2_2147m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfxgj"]
 size = Vector2(8, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2147m"]
+atlas = ExtResource("2_2147m")
+region = Rect2(0, 10, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5uus"]
+atlas = ExtResource("2_2147m")
+region = Rect2(8, 10, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54rde"]
+atlas = ExtResource("2_2147m")
+region = Rect2(16, 10, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8hb4"]
+atlas = ExtResource("2_2147m")
+region = Rect2(0, 20, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksjmp"]
+atlas = ExtResource("2_2147m")
+region = Rect2(8, 20, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68atb"]
+atlas = ExtResource("2_2147m")
+region = Rect2(16, 20, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rlf8"]
+atlas = ExtResource("2_2147m")
+region = Rect2(16, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ay4w"]
+atlas = ExtResource("2_2147m")
+region = Rect2(24, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuhu7"]
+atlas = ExtResource("2_2147m")
+region = Rect2(0, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c2uj"]
+atlas = ExtResource("2_2147m")
+region = Rect2(8, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dunks"]
+atlas = ExtResource("2_2147m")
+region = Rect2(0, 20, 8, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3vyb7")
+"texture": SubResource("AtlasTexture_2147m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5uus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54rde")
+}],
+"loop": 0,
+"name": &"fall",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8hb4")
+}],
+"loop": 0,
+"name": &"hit_ground_1",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksjmp")
+}],
+"loop": 0,
+"name": &"hit_ground_2",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68atb")
+}],
+"loop": 0,
+"name": &"hit_wall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rlf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ay4w")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuhu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c2uj")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dunks")
+}],
+"loop": 0,
+"name": &"speed_fall",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dywbp"]
-size = Vector2(8, 5)
+size = Vector2(8, 4.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=1029127342]
 script = ExtResource("1_g2els")
 
 [node name="WallCollider" type="CollisionShape2D" parent="." unique_id=514428515]
-position = Vector2(0, 1.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_bfxgj")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1726238600]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1445469335]
 sprite_frames = SubResource("SpriteFrames_tebl0")
+animation = &"hit_ground_2"
+autoplay = "run"
+metadata/_edit_lock_ = true
 
 [node name="Hurtbox" type="Area2D" parent="Pivot" unique_id=2125487472]
 collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hurtbox" unique_id=1976142002]
-position = Vector2(0, 1.5)
+position = Vector2(0, 0.75)
 shape = SubResource("RectangleShape2D_dywbp")
 debug_color = Color(0.17706224, 0.633797, 0.3271775, 0.41960785)
 

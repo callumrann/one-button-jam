@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-signal kill_player
-signal endzone_reached
-
+'''
+====== Movement ======
+'''
 const MOVEMENT_SPEED: float = 100.0
-const JUMP_VELOCITY: float = -225.0
+const JUMP_VELOCITY: float = -250.0
 const JUMP_CUT_MULTIPLIER: float = 0.5
 const SPEEDFALL_VELOCITY: float = 200.0
 
@@ -41,6 +41,50 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * MOVEMENT_SPEED
 
 	move_and_slide()
+
+'''
+====== Animations ======
+'''
+@onready var animation: AnimatedSprite2D = $"Pivot/AnimatedSprite2D"
+
+var in_air: bool = false
+
+func _ready() -> void:
+	animation.animation_finished.connect(_on_animation_finished)
+
+func _on_animation_finished():
+	if animation.animation == "hit_ground_1":
+		animation.play("hit_ground_2")
+	
+	elif animation.animation == "hit_ground_2":
+		animation.play("run")
+
+func _process(_delta: float) -> void:
+	if velocity.x < 0:
+		animation.flip_h = true
+	elif velocity.x > 0:
+		animation.flip_h = false
+	
+	if is_on_floor():
+		if in_air:
+			in_air = false
+			animation.play("hit_ground_1")
+		
+	else:
+		in_air = true
+		if is_on_wall():
+			animation.play("hit_wall")
+		elif velocity.y < 0:
+			animation.play("jump")
+		elif velocity.y > 0:
+			animation.play("fall")
+		
+
+'''
+====== Hurtbox Collision ======
+'''
+signal kill_player
+signal endzone_reached
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << (ENEMY_LAYER - 1)):
