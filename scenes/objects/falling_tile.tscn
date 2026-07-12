@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://b0bug82htdlac"]
+
+[ext_resource type="Script" uid="uid://cqld1hfevlkuh" path="res://scripts/objects/falling_tile.gd" id="1_c3s04"]
+[ext_resource type="Texture2D" uid="uid://cl2vo7mcg62sj" path="res://assets/sprites/falling_tile.png" id="1_nk32b"]
+[ext_resource type="Texture2D" uid="uid://cxa2w17h540gl" path="res://assets/sprites/falling_tile_broken.png" id="2_e3t50"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e3t50")
+}],
+"loop": 0,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nk32b")
+}],
+"loop": 0,
+"name": &"together",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tebl0"]
+size = Vector2(9, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o161g"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3t50"]
+size = Vector2(8, 8)
+
+[node name="FalllingTile" type="Node2D" unique_id=506094015 groups=["Resettable"]]
+script = ExtResource("1_c3s04")
+
+[node name="Fallable" type="Node2D" parent="." unique_id=1882853186]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fallable" unique_id=2026033366]
+sprite_frames = SubResource("SpriteFrames_tebl0")
+animation = &"together"
+autoplay = "together"
+
+[node name="Area2D" type="Area2D" parent="Fallable" unique_id=208631536]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fallable/Area2D" unique_id=1351564663]
+shape = SubResource("RectangleShape2D_tebl0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fallable" unique_id=329754011]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fallable/StaticBody2D" unique_id=175557488]
+shape = SubResource("RectangleShape2D_o161g")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1587870277]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=70984471]
+shape = SubResource("RectangleShape2D_e3t50")
+
+[connection signal="body_entered" from="Fallable/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_exited" from="PlayerCheck" to="." method="_on_player_check_body_exited"]

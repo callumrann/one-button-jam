@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlg370yn7wwy6"]
 
-[ext_resource type="Script" uid="uid://1fr1nh1pb16n" path="res://scripts/levels/saw.gd" id="1_av48n"]
+[ext_resource type="Script" uid="uid://1fr1nh1pb16n" path="res://scripts/objects/saw.gd" id="1_av48n"]
 [ext_resource type="Texture2D" uid="uid://kdvwx7168nkp" path="res://assets/sprites/saw-Sheet.png" id="1_ja0ge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lp353"]
@@ -35,7 +35,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_o161g"]
 radius = 9.0
 
-[node name="Saw" type="Area2D" unique_id=211370443]
+[node name="Saw" type="Area2D" unique_id=211370443 groups=["Resettable"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_av48n")

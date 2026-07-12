@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bi4xmb5dak2tf"]
 
-[ext_resource type="Script" uid="uid://cvqoys1x3nw2g" path="res://scripts/levels/lava.gd" id="1_b4im4"]
+[ext_resource type="Script" uid="uid://cvqoys1x3nw2g" path="res://scripts/objects/lava.gd" id="1_b4im4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb2sn"]
 size = Vector2(320, 180)
 
-[node name="Lava" type="Area2D" unique_id=730055553]
+[node name="Lava" type="Area2D" unique_id=730055553 groups=["Resettable"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_b4im4")

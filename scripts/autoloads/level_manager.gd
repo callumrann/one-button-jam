@@ -45,16 +45,25 @@ func _do_load_level(level: int) -> void:
 func load_theme(level: Node2D) -> void:
 	var level_theme = THEMES[level_themes[current_level - 1]]
 	
+	# Tilemap Layers
 	level.get_node("Layers/Background").modulate = Color(level_theme[0])
 	level.get_node("Layers/Midground").modulate = Color(level_theme[1])
 	level.get_node("Layers/Foreground").modulate = Color(level_theme[2])
 	
+	# Player
 	level.get_node("Player/AnimatedBody").modulate = Color(level_theme[2])
 	level.get_node("Player/AnimatedEyes").modulate = Color(level_theme[3])
 	
+	# Background Colour
 	level_loader.get_node("BackColour/ColorRect").modulate = Color(level_theme[3])
 	
+	# Saws
 	for object in level.get_node("Enemies/Saws").get_children():
+		object.modulate = Color(level_theme[2])
+	
+	# Falling Tiles
+	for object in level.get_node("Enemies/FallingTiles").get_children():
+		object.original_colour = Color(level_theme[2])
 		object.modulate = Color(level_theme[2])
 	
 	level.get_node("RockSpawner").set_theme(level_theme[1])
@@ -77,7 +86,7 @@ func player_died() -> void:
 	
 	await _death_flash()
 	
-	if player == null:
+	if player == null: # stop pause main menu will dead bug (bit sus)
 		return
 	
 	for node in get_tree().get_nodes_in_group("Resettable"):
