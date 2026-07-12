@@ -3,6 +3,8 @@ extends Node2D
 
 @onready var spawn: Marker2D = $"Spawn"
 
+@export var song: String # kinda cheese, but whatevs
+
 const PLAYER_SCENE: Resource = preload("res://scenes/objects/player.tscn")
 var player: CharacterBody2D
 
@@ -12,11 +14,12 @@ func _ready() -> void:
 	add_child(player)
 	player.kill_player.connect(_on_death)
 	player.endzone_reached.connect(_on_level_complete)
+	
 	LevelManager.player = player
 	LevelManager.spawn = spawn
 	LevelManager.load_theme(self)
-	# player.get_node("Camera2D").make_current() # stop flicker on restart
-	# if readd player camera, remember idle -> physics thing
+	
+	AudioManager.play_music(song, -10)
 
 func _on_death() -> void:
 	LevelManager.player_died()

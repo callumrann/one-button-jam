@@ -18,14 +18,16 @@ const SFX := {
 }
 
 const MUSIC := {
-	#"menu": preload("res://assets/audio/terrible.wav"),
-	"in_game": preload("res://assets/audio/Gaming_Song_1.wav"),
+	"menu": preload("res://assets/audio/music_4.wav"),
+	"stage_1": preload("res://assets/audio/music_1.wav"),
+	"stage_2": preload("res://assets/audio/music_2.wav"),
+	"stage_3": preload("res://assets/audio/music_3.wav"),
 }
 
 func _ready() -> void:
 	add_child(bgm_player)
 	bgm_player.bus = "Music"
-	play_music("in_game", -5)
+	play_music("menu", -10)
 
 func update_button_sfx() -> void:
 	var buttons: Array = get_tree().get_nodes_in_group("Button")

@@ -82,6 +82,7 @@ size = Vector2(23, 41)
 
 [node name="Level1" type="Node2D" unique_id=1466004205]
 script = ExtResource("1_bfxgj")
+song = "stage_1"
 
 [node name="RockSpawner" type="Node2D" parent="." unique_id=65417037]
 script = ExtResource("2_bfxgj")
@@ -193,6 +194,5 @@ position = Vector2(-192, 71)
 
 [node name="Lava" parent="Enemies/Lava" unique_id=730055553 groups=["Resettable"] instance=ExtResource("5_dywbp")]
 position = Vector2(0, 180)
-moves = true
 point_b = Vector2(0, -180)
 loop = true
