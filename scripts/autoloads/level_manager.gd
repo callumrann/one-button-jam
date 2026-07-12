@@ -1,8 +1,19 @@
 extends Node
 
+var level_loader: Node2D = null
+
+const THEMES: = [
+	["527025", "7aa03f", "1a421c", "defbd8"],
+	["ff7831", "f39949", "ca5a2e", "ebc275"]
+]
+
 var levels: = ["res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn"]
+var level_themes:= [1, 0]
 var current_level: int = 1
 var level_container: Node2D = null
+
+var player: CharacterBody2D
+var spawn: Marker2D
 
 var level_time: float = 0.0
 var level_deaths: int = 0
@@ -19,7 +30,7 @@ func load_level(level: int, player_death: int = false) -> void:
 	call_deferred("_do_load_level", level)
 	
 	LevelManager.show_complete_screen = false
-	if !player_death:
+	if !player_death: # could potentially remove now
 		level_time = 0
 		level_deaths = 0
 	
@@ -31,6 +42,24 @@ func _do_load_level(level: int) -> void:
 		child.queue_free()
 	var new_level = load(levels[level- 1]).instantiate()
 	level_container.add_child(new_level)
+
+func load_theme(level: Node2D) -> void:
+	var level_theme = THEMES[level_themes[current_level - 1]]
+	print(level_theme)
+	
+	level.get_node("Layers/Background").modulate = Color(level_theme[0])
+	level.get_node("Layers/Midground").modulate = Color(level_theme[1])
+	level.get_node("Layers/Foreground").modulate = Color(level_theme[2])
+	
+	level.get_node("Player/AnimatedBody").modulate = Color(level_theme[2])
+	level.get_node("Player/AnimatedEyes").modulate = Color(level_theme[3])
+	
+	level_loader.get_node("BackColour/ColorRect").modulate = Color(level_theme[3])
+	
+	for object in level.get_node("Enemies").get_children():
+		object.modulate = Color(level_theme[2])
+	
+	level.get_node("RockSpawner").set_theme(level_theme[1])
 
 func restart_level() -> void:
 	load_level(current_level)
@@ -47,7 +76,9 @@ func load_next_level() -> void:
 func player_died() -> void:
 	level_deaths += 1
 	AudioManager.play_sfx("damage")
-	load_level(current_level, true)
+	player.global_position = spawn.global_position
+	player.direction = player.RIGHT
+	#load_level(current_level, true)
 
 func level_finished() -> void:
 	AudioManager.play_sfx("level_win", -10)

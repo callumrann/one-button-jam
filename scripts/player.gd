@@ -58,45 +58,52 @@ func _physics_process(delta: float) -> void:
 '''
 ====== Animations ======
 '''
-@onready var animation: AnimatedSprite2D = $"Pivot/AnimatedSprite2D"
+@onready var animationBody: AnimatedSprite2D = $"AnimatedBody"
+@onready var animationEyes: AnimatedSprite2D = $"AnimatedEyes"
 
 var in_air: bool = false
 var first_ground_hit: bool = true # for removing spawn ground hit issues
 
 func _ready() -> void:
-	animation.animation_finished.connect(_on_animation_finished)
+	animationBody.animation_finished.connect(_on_animation_finished)
+
+func _play_animation(name: String) -> void:
+	animationBody.play(name)
+	animationEyes.play(name)
 
 func _on_animation_finished():
-	if animation.animation == "hit_ground_1":
-		animation.play("hit_ground_2")
+	if animationBody.animation == "hit_ground_1":
+		_play_animation("hit_ground_2")
 	
-	elif animation.animation == "hit_ground_2":
-		animation.play("run")
+	elif animationBody.animation == "hit_ground_2":
+		_play_animation("run")
 
 func _process(_delta: float) -> void:
 	if velocity.x < 0:
-		animation.flip_h = true
+		animationBody.flip_h = true
+		animationEyes.flip_h = true
 	elif velocity.x > 0:
-		animation.flip_h = false
+		animationBody.flip_h = false
+		animationEyes.flip_h = false
 	
 	if is_on_floor():
 		if first_ground_hit:
 			first_ground_hit = false
 			in_air = false
-			animation.play("run")
+			_play_animation("run")
 		elif in_air:
 			in_air = false
-			animation.play("hit_ground_1")
+			_play_animation("hit_ground_1")
 			AudioManager.play_sfx("land", -8)
 		
 	else:
 		in_air = true
 		if is_on_wall():
-			animation.play("hit_wall")
+			_play_animation("hit_wall")
 		elif velocity.y < 0:
-			animation.play("jump")
+			_play_animation("jump")
 		elif velocity.y > 0:
-			animation.play("fall")
+			_play_animation("fall")
 		
 
 '''

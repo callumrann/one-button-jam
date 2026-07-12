@@ -12,6 +12,9 @@ func _ready() -> void:
 	add_child(player)
 	player.kill_player.connect(_on_death)
 	player.endzone_reached.connect(_on_level_complete)
+	LevelManager.player = player
+	LevelManager.spawn = spawn
+	LevelManager.load_theme(self)
 	# player.get_node("Camera2D").make_current() # stop flicker on restart
 	# if readd player camera, remember idle -> physics thing
 

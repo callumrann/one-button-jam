@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d0j1w2k3etpey"]
 
-[ext_resource type="Script" uid="uid://1lftm0gtua61" path="res://scripts/levels/level_1.gd" id="1_dd0lh"]
+[ext_resource type="Script" uid="uid://7k15mcm3t4ns" path="res://scripts/levels/level_class.gd" id="1_bfxgj"]
 [ext_resource type="Script" uid="uid://bydproaya1rys" path="res://scripts/rock_spawner.gd" id="2_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://dlg370yn7wwy6" path="res://scenes/objects/saw.tscn" id="3_dywbp"]
 [ext_resource type="Texture2D" uid="uid://bat8jaln1bmeh" path="res://assets/sprites/tilemap.png" id="4_bfxgj"]
@@ -60,7 +60,7 @@ sources/0 = SubResource("TileSetAtlasSource_dywbp")
 size = Vector2(23, 41)
 
 [node name="Level1" type="Node2D" unique_id=1466004205]
-script = ExtResource("1_dd0lh")
+script = ExtResource("1_bfxgj")
 
 [node name="RockSpawner" type="Node2D" parent="." unique_id=65417037]
 script = ExtResource("2_bfxgj")

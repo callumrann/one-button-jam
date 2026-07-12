@@ -59,5 +59,6 @@ func _on_main_menu_pressed() -> void:
 ====== LevelContainer ===== 
 '''
 func _ready() -> void:
+	LevelManager.level_loader = self
 	LevelManager.level_container = $"LevelContainer"
 	LevelManager.load_level(LevelManager.current_level)
