@@ -149,3 +149,4 @@ shape = SubResource("RectangleShape2D_dywbp")
 debug_color = Color(0.17706224, 0.633797, 0.3271775, 0.41960785)
 
 [connection signal="area_entered" from="Pivot/Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Pivot/Hurtbox" to="." method="_on_hurtbox_body_entered"]

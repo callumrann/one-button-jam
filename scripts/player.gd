@@ -110,3 +110,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		kill_player.emit()
 	elif area.collision_layer & (1 << (ENDZONE_LAYER - 1)):
 		endzone_reached.emit()
+
+# join above down if find a way to access tilemap collision layer
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.get_class() == "TileMapLayer":
+		kill_player.emit()

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://fp51rfboc7o5"]
+
+[ext_resource type="Texture2D" uid="uid://7axtyqovkua5" path="res://assets/sprites/rocks.png" id="1_so78b"]
+[ext_resource type="Script" uid="uid://cddtovu30cflf" path="res://scripts/falling_rock.gd" id="2_q4vwv"]
+
+[node name="FallingRock" type="Sprite2D" unique_id=963380532]
+texture = ExtResource("1_so78b")
+script = ExtResource("2_q4vwv")
