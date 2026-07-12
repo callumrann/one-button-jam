@@ -54,7 +54,7 @@ func load_theme(level: Node2D) -> void:
 	
 	level_loader.get_node("BackColour/ColorRect").modulate = Color(level_theme[3])
 	
-	for object in level.get_node("Enemies").get_children():
+	for object in level.get_node("Enemies/Saws").get_children():
 		object.modulate = Color(level_theme[2])
 	
 	level.get_node("RockSpawner").set_theme(level_theme[1])
@@ -76,6 +76,9 @@ func player_died() -> void:
 	AudioManager.play_sfx("damage")
 	
 	await _death_flash()
+	
+	for node in get_tree().get_nodes_in_group("Resettable"):
+		node.reset_state()
 	
 	player.global_position = spawn.global_position
 	player.direction = player.RIGHT

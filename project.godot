@@ -39,6 +39,7 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 Button=""
+Resettable=""
 
 [input]
 

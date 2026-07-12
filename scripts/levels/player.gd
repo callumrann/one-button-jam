@@ -122,6 +122,7 @@ signal endzone_reached
 
 var respawning: bool = false
 @onready var wall_collider: CollisionShape2D = $"WallCollider"
+@onready var area: Area2D = $"Hurtbox"
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << (ENEMY_LAYER - 1)):
@@ -145,9 +146,11 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 func await_respawn() -> void:
 	respawning = true
 	wall_collider.set_deferred("disabled", true)
+	area.set_deferred("monitoring", false) # no double death
 	velocity = Vector2.ZERO
 
 func respawned() -> void:
 	wall_collider.disabled = false
+	area.monitoring = true
 	respawning = false
 	

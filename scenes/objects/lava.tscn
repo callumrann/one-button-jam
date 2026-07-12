@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bi4xmb5dak2tf"]
+
+[ext_resource type="Script" uid="uid://cvqoys1x3nw2g" path="res://scripts/levels/lava.gd" id="1_b4im4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb2sn"]
+size = Vector2(320, 180)
+
+[node name="Lava" type="Area2D" unique_id=730055553]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_b4im4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=249337128]
+shape = SubResource("RectangleShape2D_yb2sn")
+debug_color = Color(0.86641586, 0.32155403, 0.40365857, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1803040837]
+modulate = Color(1, 1, 0.4, 0.39215687)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
