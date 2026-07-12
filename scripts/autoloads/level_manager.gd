@@ -8,7 +8,7 @@ const THEMES: = [
 ]
 
 var levels: = ["res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn"]
-var level_themes:= [1, 0]
+var level_themes:= [0, 0]
 var current_level: int = 1
 var level_container: Node2D = null
 

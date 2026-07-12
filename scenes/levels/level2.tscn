@@ -59,7 +59,7 @@ sources/0 = SubResource("TileSetAtlasSource_dywbp")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tebl0"]
 size = Vector2(23, 41)
 
-[node name="Level1" type="Node2D" unique_id=1466004205]
+[node name="Level2" type="Node2D" unique_id=1466004205]
 script = ExtResource("1_niitk")
 
 [node name="RockSpawner" type="Node2D" parent="." unique_id=65417037]

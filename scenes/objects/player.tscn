@@ -256,7 +256,7 @@ metadata/_edit_lock_ = true
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2125487472]
 collision_layer = 0
-collision_mask = 6
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1976142002]
 position = Vector2(0, 0.75)
@@ -271,3 +271,4 @@ autoplay = "run"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]

@@ -19,17 +19,25 @@ const ENDZONE_LAYER: int = 3
 
 var direction: int = RIGHT
 
+var movement_multipler: float = 0.5
+var in_water: bool = false
+
 func _physics_process(delta: float) -> void:
+	if in_water:
+		movement_multipler = 0.5
+	else:
+		movement_multipler = 1.0
+	
 	if not is_on_floor():
-		velocity += get_gravity() * delta # gravity changed in project settings
+		velocity += get_gravity() * delta * movement_multipler
 	
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
 	
-	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+	if Input.is_action_just_pressed("jump"):		
+		if is_on_floor() or (in_water and not is_on_wall()):
 			AudioManager.play_sfx("jump", -5)
-			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_VELOCITY * movement_multipler
 
 		elif is_on_wall(): # consider no else
 			var wall_normal_x: float = get_wall_normal().x
@@ -37,7 +45,7 @@ func _physics_process(delta: float) -> void:
 				direction = LEFT
 			if wall_normal_x > 0 and direction == LEFT:
 				direction = RIGHT
-			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_VELOCITY * movement_multipler
 			AudioManager.play_sfx("wall_jump", -15)
 		
 		else:
@@ -45,14 +53,14 @@ func _physics_process(delta: float) -> void:
 			jump_buffer_timer = JUMP_BUFFER_TIME
 	
 	if is_on_floor() and jump_buffer_timer > 0.0:
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * movement_multipler
 		jump_buffer_timer = 0.0
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
-
-	velocity.x = direction * MOVEMENT_SPEED
-
+	
+	velocity.x = direction * MOVEMENT_SPEED * movement_multipler
+	
 	move_and_slide()
 
 '''
@@ -121,4 +129,12 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 # join above down if find a way to access tilemap collision layer
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.get_class() == "TileMapLayer":
-		kill_player.emit()
+		if body.name == "Foreground":
+			kill_player.emit()
+		if body.name == "Water":
+			in_water = true
+
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	if body.get_class() == "TileMapLayer":
+		if body.name == "Water":
+			in_water = false
