@@ -125,3 +125,4 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 # test web quit button disappear
 # add future buttons to group
 # save best times and deaths
+# rename level select buttons etc

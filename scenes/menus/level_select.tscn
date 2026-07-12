@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dy57xuydich7i"]
 
+[ext_resource type="Script" uid="uid://b2pttnlk5bgfd" path="res://scripts/level_select.gd" id="1_pymjq"]
 [ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="1_xqyeo"]
 
 [node name="LevelSelect" type="Control" unique_id=489116059]
@@ -9,8 +10,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pymjq")
 
-[node name="Label" type="Label" parent="." unique_id=1612338913]
+[node name="Label" type="Label" parent="." unique_id=1039776969]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_right = 45.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("1_xqyeo")
+text = "Level Select"
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1803995415]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,12 +33,85 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -48.0
-offset_top = -4.0
+offset_top = -28.0
 offset_right = 48.0
-offset_bottom = 4.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=296405932]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_xqyeo")
-text = "Level Select"
+alignment = 1
+
+[node name="Green" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=605713277]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Green Bean"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="Tutorial" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1698058632 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Tutorial"
+
+[node name="Together" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1178880885 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Together Now"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=693166321]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_xqyeo")
+alignment = 1
+
+[node name="Blue" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=694593611]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Moist
+(No Mire)"
+horizontal_alignment = 1
+
+[node name="Leak" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=1321948796 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Leak?"
+
+[node name="Definitely" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=134146472 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Definitely"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=863413665]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_xqyeo")
+alignment = 1
+
+[node name="Red" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=805443814]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "G-Gulp"
+horizontal_alignment = 1
+
+[node name="Red Rising" type="Button" parent="HBoxContainer/VBoxContainer3" unique_id=1429499354 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Red Rising"
+
+[node name="Too Much Red" type="Button" parent="HBoxContainer/VBoxContainer3" unique_id=1156960792 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqyeo")
+text = "Too Much Red"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Together" to="." method="_on_together_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/Leak" to="." method="_on_leak_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/Definitely" to="." method="_on_definitely_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer3/Red Rising" to="." method="_on_red_rising_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer3/Too Much Red" to="." method="_on_too_much_red_pressed"]
