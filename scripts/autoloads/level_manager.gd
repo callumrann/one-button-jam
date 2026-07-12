@@ -77,6 +77,9 @@ func player_died() -> void:
 	
 	await _death_flash()
 	
+	if player == null:
+		return
+	
 	for node in get_tree().get_nodes_in_group("Resettable"):
 		node.reset_state()
 	
@@ -98,6 +101,8 @@ func _death_flash() -> void:
 	
 	player.await_respawn()
 	await tween.finished
+	if player == null:
+		return
 	player.respawned()
 	
 	animatedBody.modulate = Color(original_body_colour)
@@ -119,3 +124,4 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 # add practice mode? <- can't be too hard for jam
 # test web quit button disappear
 # add future buttons to group
+# save best times and deaths

@@ -51,6 +51,10 @@ func _on_explode_pressed() -> void:
 	LevelManager.player_died()
 	_toggle_pause()
 
+func _on_next_level_pressed() -> void:
+	LevelManager.load_next_level()
+	_toggle_pause()
+
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	AudioManager.play_music("menu", -10)

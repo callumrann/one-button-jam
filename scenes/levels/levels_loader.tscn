@@ -159,6 +159,11 @@ layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "Explode"
 
+[node name="NextLevel" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=495934285 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_07c4a")
+text = "Next Level"
+
 [node name="MainMenu" type="Button" parent="PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=235280783 groups=["Button"]]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
@@ -172,4 +177,5 @@ process_mode = 1
 [connection signal="pressed" from="LevelCompleteMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/Explode" to="." method="_on_explode_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
