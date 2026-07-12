@@ -23,16 +23,15 @@ var show_complete_screen: bool = false # move this logic elsewhere?
 func _process(delta: float) -> void:
 	level_time += delta
 
-func load_level(level: int, player_death: int = false) -> void:
+func load_level(level: int) -> void:
 	if level_container == null:
 		print("Level container not set in level manager")
 		return
 	call_deferred("_do_load_level", level)
 	
 	LevelManager.show_complete_screen = false
-	if !player_death: # could potentially remove now
-		level_time = 0
-		level_deaths = 0
+	level_time = 0
+	level_deaths = 0
 	
 
 func _do_load_level(level: int) -> void:
@@ -45,7 +44,6 @@ func _do_load_level(level: int) -> void:
 
 func load_theme(level: Node2D) -> void:
 	var level_theme = THEMES[level_themes[current_level - 1]]
-	print(level_theme)
 	
 	level.get_node("Layers/Background").modulate = Color(level_theme[0])
 	level.get_node("Layers/Midground").modulate = Color(level_theme[1])
@@ -76,9 +74,31 @@ func load_next_level() -> void:
 func player_died() -> void:
 	level_deaths += 1
 	AudioManager.play_sfx("damage")
+	
+	await _death_flash()
+	
 	player.global_position = spawn.global_position
 	player.direction = player.RIGHT
-	#load_level(current_level, true)
+
+func _death_flash() -> void:
+	var animatedBody: AnimatedSprite2D = player.get_node("AnimatedBody")
+	var animatedEyes: AnimatedSprite2D = player.get_node("AnimatedEyes")
+	
+	var original_body_colour: Color = animatedBody.modulate
+	var original_eyes_colour: Color = animatedEyes.modulate
+	
+	var tween: Tween = create_tween()
+	tween.set_parallel(true)
+	
+	tween.tween_property(animatedBody, "modulate", Color(1, 1, 1, 0), 0.3)
+	tween.tween_property(animatedEyes, "modulate", Color(1, 1, 1, 0), 0.3)
+	
+	player.await_respawn()
+	await tween.finished
+	player.respawned()
+	
+	animatedBody.modulate = Color(original_body_colour)
+	animatedEyes.modulate = Color(original_eyes_colour)
 
 func level_finished() -> void:
 	AudioManager.play_sfx("level_win", -10)
@@ -91,7 +111,7 @@ func show_message(text: String, duration: float = 3.0) -> void: # use for later 
 # add win animation, somehow make player sit still
 # consider making space go to next level
 # announce if new best time for player
-# water areas, fans, cannons, lava, spikes, saws, breaking blocks
+# fans, cannons, raising and falling lava, breaking blocks, springs, moving saws
 # ready, set, run at start?
 # add practice mode? <- can't be too hard for jam
 # test web quit button disappear

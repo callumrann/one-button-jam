@@ -23,6 +23,11 @@ var movement_multipler: float = 0.5
 var in_water: bool = false
 
 func _physics_process(delta: float) -> void:
+	if respawning:
+		velocity.y = -100
+		move_and_slide()
+		return
+	
 	if in_water:
 		movement_multipler = 0.5
 	else:
@@ -70,7 +75,6 @@ func _physics_process(delta: float) -> void:
 @onready var animationEyes: AnimatedSprite2D = $"AnimatedEyes"
 
 var in_air: bool = false
-var first_ground_hit: bool = true # for removing spawn ground hit issues
 
 func _ready() -> void:
 	animationBody.animation_finished.connect(_on_animation_finished)
@@ -95,11 +99,7 @@ func _process(_delta: float) -> void:
 		animationEyes.flip_h = false
 	
 	if is_on_floor():
-		if first_ground_hit:
-			first_ground_hit = false
-			in_air = false
-			_play_animation("run")
-		elif in_air:
+		if in_air:
 			in_air = false
 			_play_animation("hit_ground_1")
 			AudioManager.play_sfx("land", -8)
@@ -120,6 +120,9 @@ func _process(_delta: float) -> void:
 signal kill_player
 signal endzone_reached
 
+var respawning: bool = false
+@onready var wall_collider: CollisionShape2D = $"WallCollider"
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << (ENEMY_LAYER - 1)):
 		kill_player.emit()
@@ -138,3 +141,13 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 	if body.get_class() == "TileMapLayer":
 		if body.name == "Water":
 			in_water = false
+
+func await_respawn() -> void:
+	respawning = true
+	wall_collider.set_deferred("disabled", true)
+	velocity = Vector2.ZERO
+
+func respawned() -> void:
+	wall_collider.disabled = false
+	respawning = false
+	

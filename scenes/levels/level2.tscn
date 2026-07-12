@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://d2ntgr8e6wl7x"]
 
 [ext_resource type="Script" uid="uid://7k15mcm3t4ns" path="res://scripts/levels/level_class.gd" id="1_niitk"]
-[ext_resource type="Script" uid="uid://bydproaya1rys" path="res://scripts/rock_spawner.gd" id="2_d5djh"]
+[ext_resource type="Script" uid="uid://bydproaya1rys" path="res://scripts/levels/rock_spawner.gd" id="2_d5djh"]
 [ext_resource type="Texture2D" uid="uid://bat8jaln1bmeh" path="res://assets/sprites/tilemap.png" id="3_ok6xr"]
 [ext_resource type="PackedScene" uid="uid://dlg370yn7wwy6" path="res://scenes/objects/saw.tscn" id="4_dj4wq"]
 
