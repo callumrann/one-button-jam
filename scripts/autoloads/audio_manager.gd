@@ -18,10 +18,10 @@ const SFX := {
 }
 
 const MUSIC := {
-	"menu": preload("res://assets/audio/music_4.wav"),
+	"menu": preload("res://assets/audio/music_2.wav"),
 	"stage_1": preload("res://assets/audio/music_1.wav"),
-	"stage_2": preload("res://assets/audio/music_2.wav"),
-	"stage_3": preload("res://assets/audio/music_3.wav"),
+	"stage_2": preload("res://assets/audio/music_3.wav"),
+	"stage_3": preload("res://assets/audio/music_4.wav"),
 }
 
 func _ready() -> void:

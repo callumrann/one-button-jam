@@ -4,14 +4,23 @@ var level_loader: Node2D = null
 
 const THEMES: = [
 	["527025", "7aa03f", "1a421c", "defbd8"],
-	["ff7831", "f39949", "ca5a2e", "ebc275"]
+	["1e579c", "0098db", "223866", "0cb6f2"],
+	["ba5044", "d6582f", "8c2d42", "e29883"],
+	["ff7831", "f39949", "ca5a2e", "ebc275"], # saves
+	["b91b54", "d53c6a", "7c183c", "ff8274"],
+	["ba5044", "d6792f", "8f1b45", "ba7844"],
+	["ba5044", "d66d2f", "7c183c", "e29883"],
 ]
 
 var level_stats := {}  
 # structure: { level_index: {"best_time": float, "total_deaths": int} }
 
-var levels: = ["res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn"]
-var level_themes:= [0, 0]
+var levels: = [
+	"res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn",
+	"res://scenes/levels/level3.tscn","res://scenes/levels/level4.tscn",
+	"res://scenes/levels/level5.tscn","res://scenes/levels/level6.tscn",
+	]
+var level_themes:= [0, 0, 1, 1, 2, 2]
 var current_level: int = 1
 var level_container: Node2D = null
 
@@ -124,6 +133,8 @@ func _death_flash() -> void:
 		return
 	player.respawned()
 	
+	if animatedBody == null or animatedEyes == null: # dont know why player == null failing
+		return
 	animatedBody.modulate = Color(original_body_colour)
 	animatedEyes.modulate = Color(original_eyes_colour)
 
@@ -177,14 +188,7 @@ func load_stats() -> void:
 		current_level = data.get("current_level", 1)
 		file.close()
 
-# make death less hard on eyes (turn screen black + spawn animation or smth)
-# add win animation, somehow make player sit still
 # consider making space go to next level
-# announce if new best time for player
-# fans, cannons, raising and falling lava, breaking blocks, springs, moving saws
-# ready, set, run at start?
-# add practice mode? <- can't be too hard for jam
 # test web quit button disappear
 # add future buttons to group
-# save best times and deaths
 # rename level select buttons etc

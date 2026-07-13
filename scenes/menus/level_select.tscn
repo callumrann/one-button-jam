@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dy57xuydich7i"]
 
-[ext_resource type="Script" uid="uid://b2pttnlk5bgfd" path="res://scripts/level_select.gd" id="1_pymjq"]
+[ext_resource type="Script" uid="uid://b2pttnlk5bgfd" path="res://scripts/menus/level_select.gd" id="1_pymjq"]
 [ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="1_xqyeo"]
 
 [node name="LevelSelect" type="Control" unique_id=489116059]

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dmbejbc6o85k3"]
 
+[ext_resource type="Script" uid="uid://c6cko8bv8nowl" path="res://scripts/menus/game_finished.gd" id="1_g1mv0"]
 [ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="1_yhuef"]
 
 [node name="GameFinished" type="Control" unique_id=2013334811]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g1mv0")
 
 [node name="Label" type="Label" parent="." unique_id=1945369090]
 layout_mode = 1
@@ -27,3 +29,21 @@ theme = ExtResource("1_yhuef")
 text = "Game Finished"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="MainMenu" type="Button" parent="." unique_id=60638612 groups=["Button"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -40.0
+offset_right = 22.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_yhuef")
+text = "Main Menu"
+
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
