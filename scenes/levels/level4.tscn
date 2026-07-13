@@ -254,3 +254,5 @@ position = Vector2(-132, -52)
 
 [node name="FallingTile18" parent="Enemies/FallingTiles" unique_id=1860820802 instance=ExtResource("6_t7v7a")]
 position = Vector2(-132, -60)
+
+[node name="ButtonsAndDoors" type="Node2D" parent="Enemies" unique_id=2080692861]

@@ -194,6 +194,8 @@ move_duration = 3.0
 
 [node name="FallingTiles" type="Node2D" parent="Enemies" unique_id=397620681]
 
+[node name="ButtonsAndDoors" type="Node2D" parent="Enemies" unique_id=357418431]
+
 [node name="Text" type="Node2D" parent="." unique_id=1872925587]
 
 [node name="Label" type="Label" parent="Text" unique_id=255003064]

@@ -215,3 +215,5 @@ func load_stats() -> void:
 # add thanks for playing screen to menu?
 # level 6 have fallable blocks, must leave path to get back
 # test level 5 lava rise times when more awake
+
+# name levels. both labels rename in level select, and in level names

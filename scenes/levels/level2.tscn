@@ -189,6 +189,8 @@ position = Vector2(-192, 71)
 
 [node name="FallingTiles" type="Node2D" parent="Enemies" unique_id=397620681]
 
+[node name="ButtonsAndDoors" type="Node2D" parent="Enemies" unique_id=1758751490]
+
 [node name="Text" type="Node2D" parent="." unique_id=2085918251]
 
 [node name="Label" type="Label" parent="Text" unique_id=1418151005]
