@@ -84,6 +84,11 @@ func load_theme(level: Node2D) -> void:
 		object.get_node("Fallable/Shake/MainBody").modulate = Color(level_theme[2])
 		object.get_node("Fallable/Shake/Cracks").modulate = Color(level_theme[1])
 	
+	# Buttons and Doors
+	for object in level.get_node("Enemies/ButtonsAndDoors").get_children():
+		object.modulate = Color(level_theme[2])
+	
+	# Rock Spawner
 	level.get_node("RockSpawner").set_theme(level_theme[1])
 
 func restart_level() -> void:
@@ -198,4 +203,7 @@ func load_stats() -> void:
 # rename level select buttons etc
 # lvl 4 cut off shot first part
 # touch up level 4 spikes first part
-# check collision
+# check collision with debug for tilemap issues
+# level 6, have button right behind start, lava force up
+# lava in name of level 5 and put water before hand
+# add thanks for playing screen to menu?
