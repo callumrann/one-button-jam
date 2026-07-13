@@ -38,11 +38,10 @@ func load_level(level: int) -> void:
 
 func _do_load_level(level: int) -> void:
 	current_level = level
+	print(level)
 	save_stats()
 	
-	if current_level <= levels.size():
-		load_level(current_level)
-	else:
+	if current_level > levels.size():
 		SceneManager.show_scene("res://scenes/menus/game_finished.tscn")
 		return
 	
