@@ -81,8 +81,10 @@ func load_theme(level: Node2D) -> void:
 	
 	# Falling Tiles
 	for object in level.get_node("Enemies/FallingTiles").get_children():
-		object.original_colour = Color(level_theme[2])
-		object.modulate = Color(level_theme[2])
+		object.body_original_colour = Color(level_theme[2])
+		object.get_node("Fallable/MainBody").modulate = Color(level_theme[2])
+		object.cracks_original_colour = Color(level_theme[1])
+		object.get_node("Fallable/Cracks").modulate = Color(level_theme[1])
 	
 	level.get_node("RockSpawner").set_theme(level_theme[1])
 

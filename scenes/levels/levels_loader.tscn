@@ -67,6 +67,7 @@ vertical_alignment = 1
 
 [node name="LevelCompleteMenu" type="CanvasLayer" parent="." unique_id=505235858]
 layer = 2
+visible = false
 
 [node name="Control" type="Control" parent="LevelCompleteMenu" unique_id=708412844]
 layout_mode = 3

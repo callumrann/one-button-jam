@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://b0bug82htdlac"]
 
 [ext_resource type="Script" uid="uid://cqld1hfevlkuh" path="res://scripts/objects/falling_tile.gd" id="1_c3s04"]
-[ext_resource type="Texture2D" uid="uid://cl2vo7mcg62sj" path="res://assets/sprites/falling_tile.png" id="1_nk32b"]
-[ext_resource type="Texture2D" uid="uid://cxa2w17h540gl" path="res://assets/sprites/falling_tile_broken.png" id="2_e3t50"]
+[ext_resource type="Texture2D" uid="uid://cl0kv621852s3" path="res://assets/sprites/falling_tile-Sheet.png" id="2_c3s04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3s04"]
+atlas = ExtResource("2_c3s04")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3t50"]
+atlas = ExtResource("2_c3s04")
+region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_e3t50")
+"texture": SubResource("AtlasTexture_c3s04")
 }],
 "loop": 0,
 "name": &"broken",
@@ -16,7 +23,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_nk32b")
+"texture": SubResource("AtlasTexture_e3t50")
+}],
+"loop": 0,
+"name": &"together",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvjk5"]
+atlas = ExtResource("2_c3s04")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgoh1"]
+atlas = ExtResource("2_c3s04")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3s04"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvjk5")
+}],
+"loop": 0,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgoh1")
 }],
 "loop": 0,
 "name": &"together",
@@ -37,9 +71,14 @@ script = ExtResource("1_c3s04")
 
 [node name="Fallable" type="Node2D" parent="." unique_id=1882853186]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fallable" unique_id=2026033366]
+[node name="MainBody" type="AnimatedSprite2D" parent="Fallable" unique_id=2026033366]
 sprite_frames = SubResource("SpriteFrames_tebl0")
 animation = &"together"
+autoplay = "together"
+
+[node name="Cracks" type="AnimatedSprite2D" parent="Fallable" unique_id=1975894320]
+sprite_frames = SubResource("SpriteFrames_c3s04")
+animation = &"broken"
 autoplay = "together"
 
 [node name="Area2D" type="Area2D" parent="Fallable" unique_id=208631536]
@@ -53,6 +92,7 @@ shape = SubResource("RectangleShape2D_tebl0")
 shape = SubResource("RectangleShape2D_o161g")
 
 [node name="PlayerCheck" type="Area2D" parent="." unique_id=1587870277]
+collision_layer = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=70984471]
 shape = SubResource("RectangleShape2D_e3t50")

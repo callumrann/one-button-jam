@@ -5,7 +5,8 @@ extends Node2D
 @onready var player_check: CollisionShape2D = $"PlayerCheck/CollisionShape2D"
 
 @onready var fallable: Node2D = $"Fallable"
-@onready var animation: AnimatedSprite2D = $"Fallable/AnimatedSprite2D"
+@onready var bodyAnimation: AnimatedSprite2D = $"Fallable/MainBody"
+@onready var cracksAnimation: AnimatedSprite2D = $"Fallable/Cracks"
 
 const FALL_SPEED: float = 100.0
 const DELAY_TIME: float = 1.0
@@ -17,12 +18,17 @@ var falling: bool = false
 var shake_intensity: float = 1.0
 
 var original_position: Vector2
-var original_colour: Color # set in level manager
+var body_original_colour: Color # set in level manager
+var cracks_original_colour: Color
 
 var current_tween: Tween
 
 func _ready() -> void:
 	original_position = fallable.position
+
+func _play_animation(name: String) -> void:
+	bodyAnimation.play(name)
+	cracksAnimation.play(name)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if triggered:
@@ -30,11 +36,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body.name == "Player":
 		triggered = true
-		animation.play("broken")
+		_play_animation("broken")
 		await _shake()
 		falling = true
-		solid_shape.disabled = true
-		detection.disabled = true
+		solid_shape.set_deferred("disabled", true)
+		detection.set_deferred("disabled", true)
 		_start_falling()
 
 func _shake():
@@ -57,17 +63,17 @@ func _physics_process(delta: float) -> void:
 
 func _fall_finished() -> void:
 	falling = false
-	animation.play("together")
+	_play_animation("together")
 	fallable.position = original_position
 	
 	while player_inside:
 		await get_tree().physics_frame
 	
 	current_tween = create_tween()
-	current_tween.tween_property(self, "modulate", original_colour, FALL_TIME)
+	current_tween.tween_property(self, "modulate", Color(1,1,1,1), FALL_TIME)
 	
-	solid_shape.disabled = false
-	detection.disabled = false
+	solid_shape.set_deferred("disabled", false)
+	detection.set_deferred("disabled", false)
 	triggered = false
 
 var player_inside: bool = false
@@ -85,11 +91,12 @@ func reset_state() -> void:
 		current_tween.kill()
 	
 	falling = false
-	animation.play("together")
+	_play_animation("together")
 	fallable.position = original_position
 	
-	modulate = original_colour
+	bodyAnimation.modulate = body_original_colour
+	cracksAnimation.modulate = cracks_original_colour
 	
-	solid_shape.disabled = false
-	detection.disabled = false
+	solid_shape.set_deferred("disabled", false)
+	detection.set_deferred("disabled", false)
 	triggered = false

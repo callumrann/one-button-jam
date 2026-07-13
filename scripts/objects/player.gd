@@ -19,7 +19,8 @@ const ENDZONE_LAYER: int = 3
 
 var direction: int = RIGHT
 
-var movement_multipler: float = 0.5
+var movement_multiplier: float = 0.5
+const WATER_MAX_FALL_SPEED: float = 100.0
 var in_water: bool = false
 
 func _physics_process(delta: float) -> void:
@@ -29,12 +30,12 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if in_water:
-		movement_multipler = 0.5
+		movement_multiplier = 0.5
 	else:
-		movement_multipler = 1.0
+		movement_multiplier = 1.0
 	
 	if not is_on_floor():
-		velocity += get_gravity() * delta * movement_multipler
+		velocity += get_gravity() * delta * movement_multiplier
 	
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
@@ -42,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):		
 		if is_on_floor() or (in_water and not is_on_wall()):
 			AudioManager.play_sfx("jump", -5)
-			velocity.y = JUMP_VELOCITY * movement_multipler
+			velocity.y = JUMP_VELOCITY * movement_multiplier
 
 		elif is_on_wall(): # consider no else
 			var wall_normal_x: float = get_wall_normal().x
@@ -50,7 +51,7 @@ func _physics_process(delta: float) -> void:
 				direction = LEFT
 			if wall_normal_x > 0 and direction == LEFT:
 				direction = RIGHT
-			velocity.y = JUMP_VELOCITY * movement_multipler
+			velocity.y = JUMP_VELOCITY * movement_multiplier
 			AudioManager.play_sfx("wall_jump", -15)
 		
 		else:
@@ -58,14 +59,16 @@ func _physics_process(delta: float) -> void:
 			jump_buffer_timer = JUMP_BUFFER_TIME
 	
 	if is_on_floor() and jump_buffer_timer > 0.0:
-		velocity.y = JUMP_VELOCITY * movement_multipler
+		velocity.y = JUMP_VELOCITY * movement_multiplier
 		jump_buffer_timer = 0.0
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
 	
-	velocity.x = direction * MOVEMENT_SPEED * movement_multipler
+	velocity.x = direction * MOVEMENT_SPEED * movement_multiplier
 	
+	if in_water and velocity.y > WATER_MAX_FALL_SPEED:
+		velocity.y = WATER_MAX_FALL_SPEED
 	move_and_slide()
 
 '''
@@ -78,6 +81,7 @@ var in_air: bool = false
 
 func _ready() -> void:
 	animationBody.animation_finished.connect(_on_animation_finished)
+	velocity.y = -80 # match respawn jump (number hardcoded)
 
 func _play_animation(name: String) -> void:
 	animationBody.play(name)
@@ -129,6 +133,10 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		kill_player.emit()
 	elif area.collision_layer & (1 << (ENDZONE_LAYER - 1)):
 		endzone_reached.emit()
+	
+	if area.name == "PlayerCheck" and is_on_floor():
+			print("check")
+			move_and_slide()
 
 # join above down if find a way to access tilemap collision layer
 func _on_hurtbox_body_entered(body: Node2D) -> void:
