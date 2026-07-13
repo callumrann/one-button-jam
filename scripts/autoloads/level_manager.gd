@@ -86,6 +86,12 @@ func load_theme(level: Node2D) -> void:
 	
 	# Buttons and Doors
 	for object in level.get_node("Enemies/ButtonsAndDoors").get_children():
+		'''
+		if "Button" in object.name:
+			object.modulate = Color(level_theme[3])
+		else:
+			object.modulate = Color(level_theme[2])
+		'''
 		object.modulate = Color(level_theme[2])
 	
 	# Rock Spawner
@@ -207,3 +213,5 @@ func load_stats() -> void:
 # level 6, have button right behind start, lava force up
 # lava in name of level 5 and put water before hand
 # add thanks for playing screen to menu?
+# level 6 have fallable blocks, must leave path to get back
+# test level 5 lava rise times when more awake
