@@ -38,6 +38,14 @@ func load_level(level: int) -> void:
 
 func _do_load_level(level: int) -> void:
 	current_level = level
+	save_stats()
+	
+	if current_level <= levels.size():
+		load_level(current_level)
+	else:
+		SceneManager.show_scene("res://scenes/menus/game_finished.tscn")
+		return
+	
 	# might not need loop, but whatevs
 	for child in level_container.get_children():
 		child.queue_free()
@@ -76,11 +84,7 @@ func restart_level() -> void:
 
 func load_next_level() -> void:
 	current_level += 1
-	
-	if current_level <= levels.size():
-		load_level(current_level)
-	else:
-		SceneManager.show_scene("res://scenes/menus/game_finished.tscn")
+	load_level(current_level)
 
 func player_died() -> void:
 	var stats = level_stats.get(current_level - 1, {"best_time": INF, "total_deaths": 0})
@@ -145,8 +149,15 @@ func _ready() -> void:
 	load_stats()
 
 func save_stats() -> void:
+	var save_data = {
+		"level_stats": level_stats,
+		"current_level": current_level
+	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(level_stats))
+	if file == null:
+		print("Failed to open save file: ", FileAccess.get_open_error())
+		return
+	file.store_string(JSON.stringify(save_data))
 	file.close()
 	print("Saving stats: ", level_stats)
 
@@ -157,10 +168,11 @@ func load_stats() -> void:
 	var data = JSON.parse_string(file.get_as_text())
 	if data:
 		level_stats = {}
-		for key in data.keys():
-			level_stats[int(key)] = data[key]
+		for key in data["level_stats"].keys():
+			level_stats[int(key)] = data["level_stats"][key]
+		current_level = data.get("current_level", 1)
 		file.close()
-	print("Loaded stats: ", level_stats)
+		print("Loaded stats: ", level_stats)
 
 # make death less hard on eyes (turn screen black + spawn animation or smth)
 # add win animation, somehow make player sit still
