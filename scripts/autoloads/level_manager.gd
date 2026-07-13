@@ -81,10 +81,8 @@ func load_theme(level: Node2D) -> void:
 	
 	# Falling Tiles
 	for object in level.get_node("Enemies/FallingTiles").get_children():
-		object.body_original_colour = Color(level_theme[2])
-		object.get_node("Fallable/MainBody").modulate = Color(level_theme[2])
-		object.cracks_original_colour = Color(level_theme[1])
-		object.get_node("Fallable/Cracks").modulate = Color(level_theme[1])
+		object.get_node("Fallable/Shake/MainBody").modulate = Color(level_theme[2])
+		object.get_node("Fallable/Shake/Cracks").modulate = Color(level_theme[1])
 	
 	level.get_node("RockSpawner").set_theme(level_theme[1])
 
@@ -110,11 +108,15 @@ func player_died() -> void:
 	if player == null: # stop pause main menu will dead bug (bit sus)
 		return
 	
-	for node in get_tree().get_nodes_in_group("Resettable"):
-		node.reset_state()
-	
 	player.global_position = spawn.global_position
 	player.direction = player.RIGHT
+	
+	await get_tree().create_timer(0.01).timeout # sus race condition fix
+	
+	player.respawned()
+	
+	for node in get_tree().get_nodes_in_group("Resettable"):
+		node.reset_state()
 
 func _death_flash() -> void:
 	var animatedBody: AnimatedSprite2D = player.get_node("AnimatedBody")
@@ -130,10 +132,10 @@ func _death_flash() -> void:
 	tween.tween_property(animatedEyes, "modulate", Color(1, 1, 1, 0), 0.3)
 	
 	player.await_respawn()
+	
 	await tween.finished
 	if player == null:
 		return
-	player.respawned()
 	
 	if animatedBody == null or animatedEyes == null: # dont know why player == null failing
 		return
@@ -194,3 +196,6 @@ func load_stats() -> void:
 # test web quit button disappear
 # add future buttons to group
 # rename level select buttons etc
+# lvl 4 cut off shot first part
+# touch up level 4 spikes first part
+# check collision

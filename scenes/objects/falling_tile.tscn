@@ -71,12 +71,14 @@ script = ExtResource("1_c3s04")
 
 [node name="Fallable" type="Node2D" parent="." unique_id=1882853186]
 
-[node name="MainBody" type="AnimatedSprite2D" parent="Fallable" unique_id=2026033366]
+[node name="Shake" type="Node2D" parent="Fallable" unique_id=324864340]
+
+[node name="MainBody" type="AnimatedSprite2D" parent="Fallable/Shake" unique_id=2026033366]
 sprite_frames = SubResource("SpriteFrames_tebl0")
 animation = &"together"
 autoplay = "together"
 
-[node name="Cracks" type="AnimatedSprite2D" parent="Fallable" unique_id=1975894320]
+[node name="Cracks" type="AnimatedSprite2D" parent="Fallable/Shake" unique_id=1975894320]
 sprite_frames = SubResource("SpriteFrames_c3s04")
 animation = &"broken"
 autoplay = "together"

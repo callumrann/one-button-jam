@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3t50"]
 radius = 2.5
-height = 8.0
+height = 7.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2147m"]
 atlas = ExtResource("2_2147m")
@@ -240,7 +240,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h5uus"]
 radius = 2.25
-height = 8.0
+height = 7.5
 
 [node name="Player" type="CharacterBody2D" unique_id=1029127342]
 script = ExtResource("1_g2els")

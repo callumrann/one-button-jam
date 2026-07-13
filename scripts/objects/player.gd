@@ -135,7 +135,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		endzone_reached.emit()
 	
 	if area.name == "PlayerCheck" and is_on_floor():
-			print("check")
 			move_and_slide()
 
 # join above down if find a way to access tilemap collision layer

@@ -5,8 +5,9 @@ extends Node2D
 @onready var player_check: CollisionShape2D = $"PlayerCheck/CollisionShape2D"
 
 @onready var fallable: Node2D = $"Fallable"
-@onready var bodyAnimation: AnimatedSprite2D = $"Fallable/MainBody"
-@onready var cracksAnimation: AnimatedSprite2D = $"Fallable/Cracks"
+@onready var shake: Node2D = $"Fallable/Shake"
+@onready var bodyAnimation: AnimatedSprite2D = $"Fallable/Shake/MainBody"
+@onready var cracksAnimation: AnimatedSprite2D = $"Fallable/Shake/Cracks"
 
 const FALL_SPEED: float = 100.0
 const DELAY_TIME: float = 1.0
@@ -17,14 +18,14 @@ var falling: bool = false
 
 var shake_intensity: float = 1.0
 
-var original_position: Vector2
-var body_original_colour: Color # set in level manager
-var cracks_original_colour: Color
+var original_position: Vector2 # for fallables
+var shake_original_position: Vector2
 
 var current_tween: Tween
 
 func _ready() -> void:
 	original_position = fallable.position
+	shake_original_position = shake.position
 
 func _play_animation(name: String) -> void:
 	bodyAnimation.play(name)
@@ -48,8 +49,8 @@ func _shake():
 	var steps: int = 6
 	var step_time := DELAY_TIME / steps / 2.0
 	current_tween.set_loops(steps)
-	current_tween.tween_property(fallable, "position", original_position + Vector2(shake_intensity, 0), step_time)
-	current_tween.tween_property(fallable, "position", original_position - Vector2(shake_intensity, 0), step_time)
+	current_tween.tween_property(shake, "position", original_position + Vector2(shake_intensity, 0), step_time)
+	current_tween.tween_property(shake, "position", original_position - Vector2(shake_intensity, 0), step_time)
 	await current_tween.finished
 
 func _start_falling() -> void:
@@ -63,6 +64,8 @@ func _physics_process(delta: float) -> void:
 
 func _fall_finished() -> void:
 	falling = false
+	
+	'''
 	_play_animation("together")
 	fallable.position = original_position
 	
@@ -75,8 +78,12 @@ func _fall_finished() -> void:
 	solid_shape.set_deferred("disabled", false)
 	detection.set_deferred("disabled", false)
 	triggered = false
+	'''
+
+
 
 var player_inside: bool = false
+
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		player_inside = true
@@ -93,9 +100,9 @@ func reset_state() -> void:
 	falling = false
 	_play_animation("together")
 	fallable.position = original_position
+	shake.position = shake_original_position
 	
-	bodyAnimation.modulate = body_original_colour
-	cracksAnimation.modulate = cracks_original_colour
+	modulate = Color(1,1,1,1)
 	
 	solid_shape.set_deferred("disabled", false)
 	detection.set_deferred("disabled", false)
