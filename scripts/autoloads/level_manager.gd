@@ -7,6 +7,9 @@ const THEMES: = [
 	["ff7831", "f39949", "ca5a2e", "ebc275"]
 ]
 
+var level_stats := {}  
+# structure: { level_index: {"best_time": float, "total_deaths": int} }
+
 var levels: = ["res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn"]
 var level_themes:= [0, 0]
 var current_level: int = 1
@@ -16,12 +19,12 @@ var player: CharacterBody2D
 var spawn: Marker2D
 
 var level_time: float = 0.0
-var level_deaths: int = 0
 
 var show_complete_screen: bool = false # move this logic elsewhere?
 
 func _process(delta: float) -> void:
-	level_time += delta
+	if !show_complete_screen: # pause screen auto pauses through tree
+		level_time += delta
 
 func load_level(level: int) -> void:
 	if level_container == null:
@@ -31,7 +34,6 @@ func load_level(level: int) -> void:
 	
 	LevelManager.show_complete_screen = false
 	level_time = 0
-	level_deaths = 0
 	
 
 func _do_load_level(level: int) -> void:
@@ -81,7 +83,12 @@ func load_next_level() -> void:
 		SceneManager.show_scene("res://scenes/menus/game_finished.tscn")
 
 func player_died() -> void:
-	level_deaths += 1
+	var stats = level_stats.get(current_level - 1, {"best_time": INF, "total_deaths": 0})
+	stats["total_deaths"] += 1
+	level_stats[current_level - 1] = stats
+	save_stats()
+
+	level_time = 0.0
 	AudioManager.play_sfx("damage")
 	
 	await _death_flash()
@@ -118,11 +125,42 @@ func _death_flash() -> void:
 	animatedEyes.modulate = Color(original_eyes_colour)
 
 func level_finished() -> void:
-	AudioManager.play_sfx("level_win", -10)
 	show_complete_screen = true
+	AudioManager.play_sfx("level_win", -10)
+	
+	var stats = level_stats.get(current_level - 1, {"best_time": INF, "total_deaths": 0})
+	
+	if stats["best_time"] > level_time:
+		stats["best_time"] = level_time
+	
+	level_stats[current_level - 1] = stats
+	save_stats()
 
-func show_message(text: String, duration: float = 3.0) -> void: # use for later dialogue if time
-	pass
+'''
+===== Saving and Retrieving =====
+'''
+const SAVE_PATH := "user://save_data.json"
+
+func _ready() -> void:
+	load_stats()
+
+func save_stats() -> void:
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	file.store_string(JSON.stringify(level_stats))
+	file.close()
+	print("Saving stats: ", level_stats)
+
+func load_stats() -> void:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	if data:
+		level_stats = {}
+		for key in data.keys():
+			level_stats[int(key)] = data[key]
+		file.close()
+	print("Loaded stats: ", level_stats)
 
 # make death less hard on eyes (turn screen black + spawn animation or smth)
 # add win animation, somehow make player sit still

@@ -8,14 +8,12 @@ extends Node2D
 @onready var level_complete_menu: CanvasLayer = $"LevelCompleteMenu"
 
 @onready var timer_label: Label = $"HUD/Control/TimeLabel"
-@onready var death_label: Label = $"HUD/Control/DeathsLabel"
 
 func _process(_delta: float) -> void:
 	level_complete_menu.visible = LevelManager.show_complete_screen
 	
-	if !LevelManager.show_complete_screen: # stops timers, else remove? - text holds end times
+	if !LevelManager.show_complete_screen:
 		timer_label.text = "Time: %.2f" % LevelManager.level_time
-		death_label.text = "Deaths: %d" % LevelManager.level_deaths
 
 func _on_continue_pressed() -> void:
 	LevelManager.load_next_level()
