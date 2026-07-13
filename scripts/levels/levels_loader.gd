@@ -6,14 +6,22 @@ extends Node2D
 ====== HUD and LevelCompleteMenu ===== 
 '''
 @onready var level_complete_menu: CanvasLayer = $"LevelCompleteMenu"
+@onready var level_complete_timer: Label = $"LevelCompleteMenu/Control/PanelContainer/VBoxContainer/HBoxContainer/Stats"
 
-@onready var timer_label: Label = $"HUD/Control/TimeLabel"
+@onready var timer_label: Label = $"HUD/Control/HBoxContainer/TimeLabel"
 
 func _process(_delta: float) -> void:
 	level_complete_menu.visible = LevelManager.show_complete_screen
 	
 	if !LevelManager.show_complete_screen:
-		timer_label.text = "Time: %.2f" % LevelManager.level_time
+		timer_label.text = "%.2f" % LevelManager.level_time
+	else:
+		if LevelManager.new_best_time:
+			level_complete_timer.modulate = Color(1,1,0)
+			level_complete_timer.text = "%.2f" % LevelManager.level_time
+		else:
+			level_complete_timer.modulate = Color(1,1,1)
+			level_complete_timer.text = "%.2f" % LevelManager.level_time
 
 func _on_continue_pressed() -> void:
 	LevelManager.load_next_level()

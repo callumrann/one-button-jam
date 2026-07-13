@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cpee2ijl6pd88" path="res://scripts/levels/levels_loader.gd" id="1_vmewy"]
 [ext_resource type="Theme" uid="uid://b2opns01su1id" path="res://assets/themes/main.tres" id="2_07c4a"]
+[ext_resource type="Texture2D" uid="uid://0n02rne210s3" path="res://assets/sprites/timer_symbol_mini.png" id="2_xk0s0"]
+[ext_resource type="Texture2D" uid="uid://cqb1vgwdkubjg" path="res://assets/sprites/timer_symbol.png" id="3_bj081"]
 
 [node name="LevelsLoader" type="Node2D" unique_id=2044140268]
 process_mode = 3
@@ -28,14 +30,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeLabel" type="Label" parent="HUD/Control" unique_id=633087249]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control" unique_id=1225631831]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -43.0
-offset_bottom = 42.0
+offset_left = -45.0
+offset_right = -5.0
+offset_bottom = 10.0
 grow_horizontal = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Control/HBoxContainer" unique_id=36850283]
+layout_mode = 2
+texture = ExtResource("2_xk0s0")
+
+[node name="TimeLabel" type="Label" parent="HUD/Control/HBoxContainer" unique_id=633087249]
+layout_mode = 2
 theme = ExtResource("2_07c4a")
 text = "0.0"
 horizontal_alignment = 1
@@ -47,14 +58,15 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
 offset_right = 20.0
-offset_bottom = 42.0
+offset_bottom = 10.0
 grow_horizontal = 2
 theme = ExtResource("2_07c4a")
 text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LevelCompleteMenu" type="CanvasLayer" parent="." unique_id=505235858]
 layer = 2
-visible = false
 
 [node name="Control" type="Control" parent="LevelCompleteMenu" unique_id=708412844]
 layout_mode = 3
@@ -90,10 +102,17 @@ theme = ExtResource("2_07c4a")
 text = "Level Complete"
 horizontal_alignment = 1
 
-[node name="Stats" type="Label" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1846283051]
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=49731038]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer/HBoxContainer" unique_id=455845529]
+layout_mode = 2
+texture = ExtResource("3_bj081")
+
+[node name="Stats" type="Label" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1846283051]
 layout_mode = 2
 theme = ExtResource("2_07c4a")
-text = "Time: Deaths:"
 horizontal_alignment = 1
 
 [node name="Continue" type="Button" parent="LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1062343748 groups=["Button"]]

@@ -19,6 +19,7 @@ var player: CharacterBody2D
 var spawn: Marker2D
 
 var level_time: float = 0.0
+var new_best_time: bool = false
 
 var show_complete_screen: bool = false # move this logic elsewhere?
 
@@ -38,7 +39,6 @@ func load_level(level: int) -> void:
 
 func _do_load_level(level: int) -> void:
 	current_level = level
-	print(level)
 	save_stats()
 	
 	if current_level > levels.size():
@@ -133,8 +133,11 @@ func level_finished() -> void:
 	
 	var stats = level_stats.get(current_level - 1, {"best_time": INF, "total_deaths": 0})
 	
-	if stats["best_time"] > level_time:
+	if level_time < stats["best_time"]:
 		stats["best_time"] = level_time
+		new_best_time = true
+	else:
+		new_best_time = false
 	
 	level_stats[current_level - 1] = stats
 	save_stats()
@@ -154,16 +157,18 @@ func save_stats() -> void:
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
-		print("Failed to open save file: ", FileAccess.get_open_error())
+		print("Failed to open save file (write): ", FileAccess.get_open_error())
 		return
 	file.store_string(JSON.stringify(save_data))
 	file.close()
-	print("Saving stats: ", level_stats)
 
 func load_stats() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
 		return
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file == null:
+		print("Failed open save file (read):, ", FileAccess.get_open_error())
+		return
 	var data = JSON.parse_string(file.get_as_text())
 	if data:
 		level_stats = {}
@@ -171,7 +176,6 @@ func load_stats() -> void:
 			level_stats[int(key)] = data["level_stats"][key]
 		current_level = data.get("current_level", 1)
 		file.close()
-		print("Loaded stats: ", level_stats)
 
 # make death less hard on eyes (turn screen black + spawn animation or smth)
 # add win animation, somehow make player sit still
