@@ -210,10 +210,8 @@ func load_stats() -> void:
 # lvl 4 cut off shot first part
 # touch up level 4 spikes first part
 # check collision with debug for tilemap issues
-# level 6, have button right behind start, lava force up
 # lava in name of level 5 and put water before hand
-# add thanks for playing screen to menu?
-# level 6 have fallable blocks, must leave path to get back
+# add thanks for playing screen button to some menu?
 # test level 5 lava rise times when more awake
 
 # name levels. both labels rename in level select, and in level names
