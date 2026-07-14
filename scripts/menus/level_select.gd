@@ -68,3 +68,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		AudioManager.play_sfx("click", -10)
 		SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
+
+
+func _on_final_screen_pressed() -> void:
+	SceneManager.show_scene("res://scenes/menus/game_finished.tscn")

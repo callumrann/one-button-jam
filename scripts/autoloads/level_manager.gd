@@ -58,6 +58,7 @@ func _do_load_level(level: int) -> void:
 	for child in level_container.get_children():
 		child.queue_free()
 	var new_level = load(levels[level- 1]).instantiate()
+	level_loader.get_node("HUD/Control/LevelName").text = new_level.level_name
 	level_container.add_child(new_level)
 
 func load_theme(level: Node2D) -> void:
@@ -179,7 +180,7 @@ func _ready() -> void:
 func save_stats() -> void:
 	var save_data = {
 		"level_stats": level_stats,
-		"current_level": current_level
+		"current_level": current_level,
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
@@ -196,22 +197,19 @@ func load_stats() -> void:
 		print("Failed open save file (read):, ", FileAccess.get_open_error())
 		return
 	var data = JSON.parse_string(file.get_as_text())
+	file.close()
 	if data:
 		level_stats = {}
 		for key in data["level_stats"].keys():
 			level_stats[int(key)] = data["level_stats"][key]
 		current_level = data.get("current_level", 1)
-		file.close()
 
 # consider making space go to next level
 # test web quit button disappear
 # add future buttons to group
-# rename level select buttons etc
-# lvl 4 cut off shot first part
-# touch up level 4 spikes first part
 # check collision with debug for tilemap issues
-# lava in name of level 5 and put water before hand
 # add thanks for playing screen button to some menu?
-# test level 5 lava rise times when more awake
+
+# sound changing menu
 
 # name levels. both labels rename in level select, and in level names

@@ -4,6 +4,7 @@ extends Node2D
 @onready var spawn: Marker2D = $"Spawn"
 
 @export var song: String # kinda cheese, but whatevs
+@export var level_name: String = "Name"
 
 const PLAYER_SCENE: Resource = preload("res://scenes/objects/player.tscn")
 var player: CharacterBody2D

@@ -86,6 +86,7 @@ font_size = 3
 [node name="Level2" type="Node2D" unique_id=1466004205]
 script = ExtResource("1_niitk")
 song = "stage_1"
+level_name = "Godspeed"
 
 [node name="RockSpawner" type="Node2D" parent="." unique_id=65417037]
 script = ExtResource("2_d5djh")

@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 			AudioManager.play_sfx("wall_jump", -15)
 		
 		else:
+			AudioManager.play_sfx("wall_jump", -20)
 			velocity.y = SPEEDFALL_VELOCITY
 			jump_buffer_timer = JUMP_BUFFER_TIME
 	

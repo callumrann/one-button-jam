@@ -10,6 +10,9 @@ func _on_continue_pressed() -> void:
 func _on_level_select_pressed() -> void:
 	SceneManager.show_scene("res://scenes/menus/level_select.tscn")
 
+func _on_volume_settings_pressed() -> void:
+	SceneManager.show_scene("res://scenes/menus/volume_settings.tscn")
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 

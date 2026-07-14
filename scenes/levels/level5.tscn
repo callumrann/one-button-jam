@@ -94,6 +94,7 @@ font_size = 3
 [node name="Level5" type="Node2D" unique_id=1466004205]
 script = ExtResource("1_v1pya")
 song = "stage_3"
+level_name = "Heating Up"
 
 [node name="RockSpawner" type="Node2D" parent="." unique_id=65417037]
 script = ExtResource("2_qsj6i")
@@ -145,7 +146,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Spawn" type="Marker2D" parent="." unique_id=1486613229]
-position = Vector2(-166, 65)
+position = Vector2(-167, 63)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1155739050]
 
@@ -203,7 +204,7 @@ moves = true
 start_size = 2
 end_size = 11
 move_duration = 4.0
-wait_time = 1.0
+wait_time = 0.2
 loop = true
 
 [node name="Lava2" parent="Enemies/Lava" unique_id=417139658 instance=ExtResource("5_lsgss")]

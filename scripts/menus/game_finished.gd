@@ -1,6 +1,5 @@
 extends Control
 
-
 func _on_main_menu_pressed() -> void:
 	AudioManager.play_music("menu", -10)
 	SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
