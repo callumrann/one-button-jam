@@ -44,9 +44,17 @@ func _on_button_hover() -> void:
 	play_sfx("menu_move_1", -15)
 
 func play_music(track_name: String, volume: float = 0.0) -> void:
+	if track_name == "stage_4":
+		track_name = "stage_3"
+		set_music_speed(1.5)
+	else:
+		set_music_speed(1)
+	
 	if not MUSIC.has(track_name):
 		push_warning("Unknown music track: " + track_name)
+		set_music_speed(1)
 		return
+	
 	var stream = MUSIC[track_name]
 	if bgm_player.stream == stream and bgm_player.playing:
 		return
@@ -68,3 +76,9 @@ func play_sfx(sfx_name: String, volume: float = 0.0) -> void:
 	add_child(sfx_player)
 	sfx_player.play()
 	sfx_player.finished.connect(sfx_player.queue_free)
+
+func set_music_speed(speed_factor: float) -> void:
+	bgm_player.pitch_scale = speed_factor
+	var bus_index = AudioServer.get_bus_index("Music")
+	var pitch_shift = AudioServer.get_bus_effect(bus_index, 0) as AudioEffectPitchShift
+	pitch_shift.pitch_scale = 1.0 / speed_factor
